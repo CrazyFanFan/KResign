@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  KResign
+
+  Created by Crazy凡 on 2021/8/20.
+  
+*/
+
+"Pick an ipa file." = "选取一个ipa文件";
+"Browser" = "浏览";
+"Select a certificate: " = "选择一个证书：";

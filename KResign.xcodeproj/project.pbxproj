@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63B3283326CFAC8B009219B7 /* KResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3283226CFAC8B009219B7 /* KResignApp.swift */; };
+		63B3283526CFAC8B009219B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3283426CFAC8B009219B7 /* ContentView.swift */; };
+		63B3283726CFAC8C009219B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B3283626CFAC8C009219B7 /* Assets.xcassets */; };
+		63B3283A26CFAC8C009219B7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B3283926CFAC8C009219B7 /* Preview Assets.xcassets */; };
+		63B3284426CFACA3009219B7 /* IPAPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3284326CFACA3009219B7 /* IPAPicker.swift */; };
+		63B3284826CFAD43009219B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63B3284A26CFAD43009219B7 /* Localizable.strings */; };
+		63B3284D26CFB11E009219B7 /* IPATools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3284C26CFB11E009219B7 /* IPATools.swift */; };
+		63B3285026CFB908009219B7 /* KRRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3284F26CFB908009219B7 /* KRRunLoop.swift */; };
+		63B3285226CFB9CE009219B7 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3285126CFB9CE009219B7 /* FileHelper.swift */; };
+		63B3286726CFE115009219B7 /* ResignDependencyTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286626CFE115009219B7 /* ResignDependencyTools.swift */; };
+		63B3286A26CFE14D009219B7 /* Certificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286926CFE14D009219B7 /* Certificate.swift */; };
+		63B3286C26CFE17B009219B7 /* FileHelperError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286B26CFE17B009219B7 /* FileHelperError.swift */; };
+		63B3286E26CFE21E009219B7 /* ProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286D26CFE21E009219B7 /* ProvisioningProfile.swift */; };
+		63B3287026CFEFFA009219B7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286F26CFEFFA009219B7 /* Constant.swift */; };
+		63B3287226CFF331009219B7 /* CertificatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3287126CFF331009219B7 /* CertificatePicker.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		63B3282F26CFAC8B009219B7 /* KResign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KResign.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63B3283226CFAC8B009219B7 /* KResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KResignApp.swift; sourceTree = "<group>"; };
+		63B3283426CFAC8B009219B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63B3283626CFAC8C009219B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63B3283926CFAC8C009219B7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63B3283B26CFAC8C009219B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63B3283C26CFAC8C009219B7 /* KResign.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KResign.entitlements; sourceTree = "<group>"; };
+		63B3284326CFACA3009219B7 /* IPAPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAPicker.swift; sourceTree = "<group>"; };
+		63B3284926CFAD43009219B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		63B3284B26CFAD46009219B7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		63B3284C26CFB11E009219B7 /* IPATools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPATools.swift; sourceTree = "<group>"; };
+		63B3284F26CFB908009219B7 /* KRRunLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRRunLoop.swift; sourceTree = "<group>"; };
+		63B3285126CFB9CE009219B7 /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		63B3286626CFE115009219B7 /* ResignDependencyTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignDependencyTools.swift; sourceTree = "<group>"; };
+		63B3286926CFE14D009219B7 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
+		63B3286B26CFE17B009219B7 /* FileHelperError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelperError.swift; sourceTree = "<group>"; };
+		63B3286D26CFE21E009219B7 /* ProvisioningProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfile.swift; sourceTree = "<group>"; };
+		63B3286F26CFEFFA009219B7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		63B3287126CFF331009219B7 /* CertificatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatePicker.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63B3282C26CFAC8B009219B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63B3282626CFAC8B009219B7 = {
+			isa = PBXGroup;
+			children = (
+				63B3283126CFAC8B009219B7 /* KResign */,
+				63B3283026CFAC8B009219B7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63B3283026CFAC8B009219B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63B3282F26CFAC8B009219B7 /* KResign.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63B3283126CFAC8B009219B7 /* KResign */ = {
+			isa = PBXGroup;
+			children = (
+				63B3286826CFE11E009219B7 /* Model */,
+				63B3284E26CFB8F5009219B7 /* Util */,
+				63B3284526CFACF9009219B7 /* Resources */,
+				63B3284226CFAC96009219B7 /* Views */,
+				63B3283226CFAC8B009219B7 /* KResignApp.swift */,
+				63B3283426CFAC8B009219B7 /* ContentView.swift */,
+				63B3283626CFAC8C009219B7 /* Assets.xcassets */,
+				63B3283B26CFAC8C009219B7 /* Info.plist */,
+				63B3283C26CFAC8C009219B7 /* KResign.entitlements */,
+				63B3283826CFAC8C009219B7 /* Preview Content */,
+				63B3284C26CFB11E009219B7 /* IPATools.swift */,
+			);
+			path = KResign;
+			sourceTree = "<group>";
+		};
+		63B3283826CFAC8C009219B7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				63B3283926CFAC8C009219B7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63B3284226CFAC96009219B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63B3284326CFACA3009219B7 /* IPAPicker.swift */,
+				63B3287126CFF331009219B7 /* CertificatePicker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		63B3284526CFACF9009219B7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63B3284A26CFAD43009219B7 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		63B3284E26CFB8F5009219B7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				63B3284F26CFB908009219B7 /* KRRunLoop.swift */,
+				63B3285126CFB9CE009219B7 /* FileHelper.swift */,
+				63B3286B26CFE17B009219B7 /* FileHelperError.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		63B3286826CFE11E009219B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63B3286626CFE115009219B7 /* ResignDependencyTools.swift */,
+				63B3286926CFE14D009219B7 /* Certificate.swift */,
+				63B3286D26CFE21E009219B7 /* ProvisioningProfile.swift */,
+				63B3286F26CFEFFA009219B7 /* Constant.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63B3282E26CFAC8B009219B7 /* KResign */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63B3283F26CFAC8C009219B7 /* Build configuration list for PBXNativeTarget "KResign" */;
+			buildPhases = (
+				63B3282B26CFAC8B009219B7 /* Sources */,
+				63B3282C26CFAC8B009219B7 /* Frameworks */,
+				63B3282D26CFAC8B009219B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KResign;
+			productName = KResign;
+			productReference = 63B3282F26CFAC8B009219B7 /* KResign.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63B3282726CFAC8B009219B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					63B3282E26CFAC8B009219B7 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 63B3282A26CFAC8B009219B7 /* Build configuration list for PBXProject "KResign" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 63B3282626CFAC8B009219B7;
+			productRefGroup = 63B3283026CFAC8B009219B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63B3282E26CFAC8B009219B7 /* KResign */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63B3282D26CFAC8B009219B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63B3283A26CFAC8C009219B7 /* Preview Assets.xcassets in Resources */,
+				63B3284826CFAD43009219B7 /* Localizable.strings in Resources */,
+				63B3283726CFAC8C009219B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63B3282B26CFAC8B009219B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63B3284D26CFB11E009219B7 /* IPATools.swift in Sources */,
+				63B3285226CFB9CE009219B7 /* FileHelper.swift in Sources */,
+				63B3284426CFACA3009219B7 /* IPAPicker.swift in Sources */,
+				63B3286C26CFE17B009219B7 /* FileHelperError.swift in Sources */,
+				63B3283526CFAC8B009219B7 /* ContentView.swift in Sources */,
+				63B3285026CFB908009219B7 /* KRRunLoop.swift in Sources */,
+				63B3283326CFAC8B009219B7 /* KResignApp.swift in Sources */,
+				63B3286726CFE115009219B7 /* ResignDependencyTools.swift in Sources */,
+				63B3287026CFEFFA009219B7 /* Constant.swift in Sources */,
+				63B3286E26CFE21E009219B7 /* ProvisioningProfile.swift in Sources */,
+				63B3286A26CFE14D009219B7 /* Certificate.swift in Sources */,
+				63B3287226CFF331009219B7 /* CertificatePicker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		63B3284A26CFAD43009219B7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63B3284926CFAD43009219B7 /* en */,
+				63B3284B26CFAD46009219B7 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		63B3283D26CFAC8C009219B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63B3283E26CFAC8C009219B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		63B3284026CFAC8C009219B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KResign/KResign.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"KResign/Preview Content\"";
+				DEVELOPMENT_TEAM = HV88ACAAR6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = KResign/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crazyfan.KResign;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		63B3284126CFAC8C009219B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KResign/KResign.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"KResign/Preview Content\"";
+				DEVELOPMENT_TEAM = HV88ACAAR6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = KResign/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crazyfan.KResign;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63B3282A26CFAC8B009219B7 /* Build configuration list for PBXProject "KResign" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63B3283D26CFAC8C009219B7 /* Debug */,
+				63B3283E26CFAC8C009219B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63B3283F26CFAC8C009219B7 /* Build configuration list for PBXNativeTarget "KResign" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63B3284026CFAC8C009219B7 /* Debug */,
+				63B3284126CFAC8C009219B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63B3282726CFAC8B009219B7 /* Project object */;
+}
