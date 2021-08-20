@@ -15,9 +15,18 @@ struct CertificatePicker: View {
     
     var body: some View {
         HStack {
-            Picker("Select a certificate: ", selection: $certificate) {
-                ForEach(certificates, id: \.self) {
-                    Text($0.name).tag($0 as Certificate?) // 这里必须 as Certificate? 否则和 selection Type 不匹配
+            ZStack(alignment: .leading) {
+                Picker("", selection: $certificate) {
+                    ForEach(certificates, id: \.self) {
+                        // 这里必须 as Certificate? 否则和 selection Type 不匹配
+                        Text($0.name).tag($0 as Certificate?)
+                    }
+                }.labelsHidden()
+
+                if certificate == nil {
+                    Text("Select a certificate")
+                        .foregroundColor(.secondary.opacity(0.75))
+                        .padding(.leading, 3)
                 }
             }
 

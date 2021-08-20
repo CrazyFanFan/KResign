@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProvisioningProfile {
+struct ProvisioningProfile: Hashable {
     private(set) var name: String
     private(set) var teamName: String
     private(set) var isValid: Bool
@@ -19,7 +19,7 @@ struct ProvisioningProfile {
     private(set) var timeToLive: Int
     private(set) var applicationIdentifier: String
     private(set) var bundleIdentifier: String
-    private(set) var certificates: [String]
+    private(set) var certificates: [Data]
     private(set) var version: Int
     private(set) var prefixes: [String]
     private(set) var appIdName: String
@@ -62,16 +62,7 @@ struct ProvisioningProfile {
                 return tmp
             }
 
-            assert(false, "Cannot read key: \(key)")
-            return nil
-        }
-
-        func value<T,R>(for key: String, transfrom: (T) -> R?) -> R? {
-            if let tmp = plist[key] as? T, let r = transfrom(tmp) {
-                return r
-            }
-
-            assert(false, "Cannot read key: \(key)")
+            assert(key == "ProvisionedDevices" || false, "Cannot read key: \(key)")
             return nil
         }
 
@@ -79,8 +70,6 @@ struct ProvisioningProfile {
             if let tmp = plist["Entitlements"] as? [String: Any], let result = tmp[key] as? T {
                 return result
             }
-
-            assert(false, "Cannot read key: \(key)")
             return nil
         }
 
@@ -93,11 +82,11 @@ struct ProvisioningProfile {
         self.creationDate = value(for: "CreationDate") ?? Date()
         self.expirationDate = value(for: "ExpirationDate") ?? Date()
         self.devices = value(for: "ProvisionedDevices") ?? []
-        self.timeToLive =  value(for: "TimeToLive", transfrom: { (string: String) -> Int? in Int(string) }) ?? 0
+        self.timeToLive =  value(for: "TimeToLive") ?? 0
         self.applicationIdentifier = entitlementsValue(for: "application-identifier") ?? ""
         self.certificates = value(for: "DeveloperCertificates") ?? []
         self.isValid = Date().timeIntervalSince(self.expirationDate) < 0
-        self.version = value(for: "Version", transfrom: { (string: String) -> Int? in Int(string) }) ?? 0
+        self.version = value(for: "Version") ?? 0
         self.bundleIdentifier = self.applicationIdentifier
         self.UUID = value(for: "UUID") ?? ""
         self.prefixes = value(for: "ApplicationIdentifierPrefix") ?? []

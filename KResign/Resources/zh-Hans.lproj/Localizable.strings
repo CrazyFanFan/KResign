@@ -6,6 +6,7 @@
   
 */
 
-"Pick an ipa file." = "选取一个ipa文件";
+"Pick an ipa file." = "请选取一个ipa文件";
 "Browser" = "浏览";
-"Select a certificate: " = "选择一个证书：";
+"Select a certificate" = "请选择一个证书";
+"Select a provisioninp profile" = "请选择一个描述文件";

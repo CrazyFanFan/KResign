@@ -22,6 +22,7 @@
 		63B3286E26CFE21E009219B7 /* ProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286D26CFE21E009219B7 /* ProvisioningProfile.swift */; };
 		63B3287026CFEFFA009219B7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3286F26CFEFFA009219B7 /* Constant.swift */; };
 		63B3287226CFF331009219B7 /* CertificatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3287126CFF331009219B7 /* CertificatePicker.swift */; };
+		63B3287426D00D08009219B7 /* ProvisioningProfilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3287326D00D08009219B7 /* ProvisioningProfilePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		63B3286D26CFE21E009219B7 /* ProvisioningProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfile.swift; sourceTree = "<group>"; };
 		63B3286F26CFEFFA009219B7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		63B3287126CFF331009219B7 /* CertificatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatePicker.swift; sourceTree = "<group>"; };
+		63B3287326D00D08009219B7 /* ProvisioningProfilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfilePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				63B3284326CFACA3009219B7 /* IPAPicker.swift */,
 				63B3287126CFF331009219B7 /* CertificatePicker.swift */,
+				63B3287326D00D08009219B7 /* ProvisioningProfilePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				63B3283526CFAC8B009219B7 /* ContentView.swift in Sources */,
 				63B3285026CFB908009219B7 /* KRRunLoop.swift in Sources */,
 				63B3283326CFAC8B009219B7 /* KResignApp.swift in Sources */,
+				63B3287426D00D08009219B7 /* ProvisioningProfilePicker.swift in Sources */,
 				63B3286726CFE115009219B7 /* ResignDependencyTools.swift in Sources */,
 				63B3287026CFEFFA009219B7 /* Constant.swift in Sources */,
 				63B3286E26CFE21E009219B7 /* ProvisioningProfile.swift in Sources */,
@@ -363,7 +367,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"KResign/Preview Content\"";
 				DEVELOPMENT_TEAM = HV88ACAAR6;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = KResign/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,7 +391,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"KResign/Preview Content\"";
 				DEVELOPMENT_TEAM = HV88ACAAR6;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = KResign/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

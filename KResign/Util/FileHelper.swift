@@ -71,12 +71,15 @@ class FileHelper {
         return publisher.eraseToAnyPublisher()
     }
 
-    func getProvisioningProfiles() throws -> [ProvisioningProfile] {
-        try manager.contentsOfDirectory(atPath: "\(NSHomeDirectory())/Library/MobileDevice/Provisioning Profiles")
+    func getProvisioningProfiles() -> [ProvisioningProfile] {
+        let path = "\(NSHomeDirectory().components(separatedBy: "/Library")[0])/Library/MobileDevice/Provisioning Profiles"
+        return ((try? manager.contentsOfDirectory(atPath: path)) ?? [])
+            .map { "\(path)/\($0)" }
             .filter { manager.fileExists(atPath: $0) } // 确认文件存在
             .map { URL(fileURLWithPath: $0) } // 转成URL
             .filter { provisionExtensions.contains($0.pathExtension.lowercased()) } // 确认文件扩展名
-            .compactMap { ProvisioningProfile(with: $0) } // 转换成功
+            .compactMap { ProvisioningProfile(with: $0) }
+            // 转换成功
     }
 
     func unzip(fileAt from: URL, to target: URL) -> AnyPublisher<Bool, Error> {

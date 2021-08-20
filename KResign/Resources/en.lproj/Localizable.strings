@@ -8,4 +8,5 @@
 
 "Pick an ipa file." = "Pick an ipa file.";
 "Browser" = "Browser";
-"Select a certificate: " = "Select a certificate: ";
+"Select a certificate" = "Select a certificate";
+"Select a provisioninp profile" = "Select a provisioninp profile";

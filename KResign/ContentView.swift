@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var ipaTool = IPATools()
-    @State var certificate: Certificate?
+    @State private var certificate: Certificate?
+    @State private var provisioningProfile: ProvisioningProfile?
+
 
     var body: some View {
         VStack {
             IPAPicker(path: $ipaTool.ipaPath)
             CertificatePicker(certificate: $certificate)
+            ProvisioningProfilePicker(provisioningProfile: $provisioningProfile)
         }
         .padding()
         .frame(minWidth: 550, minHeight: 350, alignment: .topLeading)
