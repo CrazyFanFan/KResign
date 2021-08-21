@@ -43,6 +43,8 @@ struct CertificatePicker: View {
         certificate = nil
 
         CertificatePicker.handler = FileHelper.share.readCertificates()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
             .sink { error in
                 print(error)
             } receiveValue: { certificates in

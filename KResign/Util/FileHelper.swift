@@ -39,12 +39,16 @@ class FileHelper {
         task.launch()
 
         let publisher = PassthroughSubject<[Certificate], Error>()
+        Logger.info("Start: read certificates")
 
         DispatchQueue.global().async {
             let securityResult: Data?
             do {
                 securityResult = try handle.readToEnd()
             } catch {
+                DispatchQueue.main.async {
+                    Logger.error("Read certificates error.", error: error)
+                }
                 publisher.send(completion: .failure(error))
                 return
             }
@@ -52,6 +56,7 @@ class FileHelper {
             guard let data = securityResult,
                   let securityString = String(data: data, encoding: .utf8),
                   !securityString.isEmpty else {
+                Logger.error("Read certificates failed.")
                 publisher.send(completion: .failure(FileHelperError.filedToReadSecurity))
                 return
             }
@@ -61,10 +66,13 @@ class FileHelper {
             let certificates = rawResult.compactMap { Certificate(string: $0) }
 
             if certificates.isEmpty {
+                Logger.warning("Certificates count is zero.")
+
                 publisher.send(completion: .failure(FileHelperError.noSignignCertificates))
             } else {
                 publisher.send(certificates)
                 publisher.send(completion: .finished)
+                Logger.info("End: read certificates.")
             }
         }
 

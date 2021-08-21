@@ -27,12 +27,12 @@ struct ProvisioningProfile: Hashable {
     private(set) var path: URL
 
     init?(with fileURL: URL) {
-        var docoder: CMSDecoder?
+        var decoder: CMSDecoder?
         var dataRef: CFData?
 
-        CMSDecoderCreate(&docoder)
+        CMSDecoderCreate(&decoder)
 
-        guard let docoder = docoder, let data = try? Data(contentsOf: fileURL) else { return nil }
+        guard let decoder = decoder, let data = try? Data(contentsOf: fileURL) else { return nil }
 
         let plist: Any? = data.withUnsafeBytes { (bufferRawBufferPointer) -> Any? in
 
@@ -40,9 +40,9 @@ struct ProvisioningProfile: Hashable {
             let rawPtr = UnsafeRawPointer(bufferPointer)
             //USE THE rawPtr
 
-            CMSDecoderUpdateMessage(docoder, rawPtr, data.count)
-            CMSDecoderFinalizeMessage(docoder)
-            CMSDecoderCopyContent(docoder, &dataRef)
+            CMSDecoderUpdateMessage(decoder, rawPtr, data.count)
+            CMSDecoderFinalizeMessage(decoder)
+            CMSDecoderCopyContent(decoder, &dataRef)
             if let dataRef = dataRef,
                let plist = try? PropertyListSerialization.propertyList(
                 from: dataRef as Data,
@@ -74,7 +74,6 @@ struct ProvisioningProfile: Hashable {
         }
 
         self.appIdName = value(for: "AppIDName") ?? ""
-
         self.teamIdentifier = entitlementsValue(for: "com.apple.developer.team-identifier") ?? ""
         self.name = value(for: "Name") ?? ""
         self.teamName = value(for: "TeamName") ?? ""

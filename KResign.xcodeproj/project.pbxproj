@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63AAAEBB26D0238100ED5496 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AAAEBA26D0238100ED5496 /* LogView.swift */; };
+		63AAAEBD26D0BE4500ED5496 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AAAEBC26D0BE4500ED5496 /* Logger.swift */; };
 		63B3283326CFAC8B009219B7 /* KResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3283226CFAC8B009219B7 /* KResignApp.swift */; };
 		63B3283526CFAC8B009219B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3283426CFAC8B009219B7 /* ContentView.swift */; };
 		63B3283726CFAC8C009219B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B3283626CFAC8C009219B7 /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63AAAEBA26D0238100ED5496 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		63AAAEBC26D0BE4500ED5496 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		63B3282F26CFAC8B009219B7 /* KResign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KResign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B3283226CFAC8B009219B7 /* KResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KResignApp.swift; sourceTree = "<group>"; };
 		63B3283426CFAC8B009219B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,7 +92,6 @@
 				63B3283B26CFAC8C009219B7 /* Info.plist */,
 				63B3283C26CFAC8C009219B7 /* KResign.entitlements */,
 				63B3283826CFAC8C009219B7 /* Preview Content */,
-				63B3284C26CFB11E009219B7 /* IPATools.swift */,
 			);
 			path = KResign;
 			sourceTree = "<group>";
@@ -107,6 +110,7 @@
 				63B3284326CFACA3009219B7 /* IPAPicker.swift */,
 				63B3287126CFF331009219B7 /* CertificatePicker.swift */,
 				63B3287326D00D08009219B7 /* ProvisioningProfilePicker.swift */,
+				63AAAEBA26D0238100ED5496 /* LogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +126,8 @@
 		63B3284E26CFB8F5009219B7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				63AAAEBC26D0BE4500ED5496 /* Logger.swift */,
+				63B3284C26CFB11E009219B7 /* IPATools.swift */,
 				63B3284F26CFB908009219B7 /* KRRunLoop.swift */,
 				63B3285126CFB9CE009219B7 /* FileHelper.swift */,
 				63B3286B26CFE17B009219B7 /* FileHelperError.swift */,
@@ -216,10 +222,12 @@
 				63B3284426CFACA3009219B7 /* IPAPicker.swift in Sources */,
 				63B3286C26CFE17B009219B7 /* FileHelperError.swift in Sources */,
 				63B3283526CFAC8B009219B7 /* ContentView.swift in Sources */,
+				63AAAEBB26D0238100ED5496 /* LogView.swift in Sources */,
 				63B3285026CFB908009219B7 /* KRRunLoop.swift in Sources */,
 				63B3283326CFAC8B009219B7 /* KResignApp.swift in Sources */,
 				63B3287426D00D08009219B7 /* ProvisioningProfilePicker.swift in Sources */,
 				63B3286726CFE115009219B7 /* ResignDependencyTools.swift in Sources */,
+				63AAAEBD26D0BE4500ED5496 /* Logger.swift in Sources */,
 				63B3287026CFEFFA009219B7 /* Constant.swift in Sources */,
 				63B3286E26CFE21E009219B7 /* ProvisioningProfile.swift in Sources */,
 				63B3286A26CFE14D009219B7 /* Certificate.swift in Sources */,
