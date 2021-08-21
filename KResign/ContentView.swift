@@ -21,11 +21,11 @@ struct ContentView: View {
             VStack {
                 IPAPicker(path: $ipaTool.ipaPath)
                 ResultSavePathPicker(path: $ipaTool.savePath)
-                
+
                 CertificatePicker(certificate: $certificate)
 
                 AppInfosView(appInfos: $ipaTool.appInfos)
-                
+
                 LogView(append: $logger.append)
                     .frame(minHeight: 100)
             }
