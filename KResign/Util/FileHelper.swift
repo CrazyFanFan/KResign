@@ -61,9 +61,13 @@ class FileHelper {
                 return
             }
 
-            var rawResult = securityString.components(separatedBy: "\n")
-            rawResult.removeLast()
-            let certificates = rawResult.compactMap { Certificate(string: $0) }
+            let certStrings = securityString
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .components(separatedBy: "\n")
+
+            let certificates = certStrings
+                .prefix(certStrings.count - 1)
+                .compactMap { Certificate(string: $0) }
 
             if certificates.isEmpty {
                 Logger.warning("Certificates count is zero.")
@@ -97,6 +101,14 @@ class FileHelper {
         let task = Process()
         task.launchPath = ResignDependencyTools.unzip.rawValue
         task.arguments = [from.path, "-d", target.path]
+        do {
+            try manager.createDirectory(atPath: target.path, withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            Logger.error("Create unzip target directory failed.", error: error)
+            return Result
+                .Publisher(.failure(error))
+                .eraseToAnyPublisher()
+        }
 
         DispatchQueue.global().async { [unowned self] in
             task.launch()

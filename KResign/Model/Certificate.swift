@@ -8,7 +8,7 @@
 import Foundation
 
 struct Certificate: Hashable {
-    private static let pattern = #"^\s+(\d+)\)\s([0-9A-Z]+)\s\"(.*)\"(.*)"#
+    private static let pattern = #"(\d+)\)\s([0-9A-Z]+)\s\"(.*)\"(.*)?"#
     private static let regular: NSRegularExpression? = try? NSRegularExpression(pattern: pattern, options: [])
 
     var index: Int

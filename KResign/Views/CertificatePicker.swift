@@ -9,10 +9,9 @@ import SwiftUI
 import Combine
 
 struct CertificatePicker: View {
-    static var handler: AnyCancellable?
     @Binding var certificate: Certificate?
     @State private var certificates: [Certificate] = []
-    
+
     var body: some View {
         HStack {
             ZStack(alignment: .leading) {
@@ -31,22 +30,23 @@ struct CertificatePicker: View {
             }
 
             Button("↻") {
-                reloadCertificates()
+                certificate = nil
+                loadCertificates()
             }
         }
         .onAppear(perform: {
-            reloadCertificates()
+            loadCertificates()
         })
     }
 
-    private func reloadCertificates() {
-        certificate = nil
+    private func loadCertificates() {
 
-        CertificatePicker.handler = FileHelper.share.readCertificates()
+        var cancellable: AnyCancellable? = FileHelper.share.readCertificates()
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .sink { error in
                 print(error)
+                cancellable = nil
             } receiveValue: { certificates in
                 self.certificates = certificates
             }

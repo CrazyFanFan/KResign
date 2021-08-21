@@ -41,19 +41,9 @@ class Logger: ObservableObject {
     }
 }
 
-
 extension Logger {
-    static let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.timeStyle = .medium
-        return formatter
-    }()
-
-
-
     private static func time() -> NSMutableAttributedString {
-        "[\(formatter.string(from: .init()))] ".purple
+        "[\(Formatter.date.string(from: .init()))] ".purple
     }
 
     static func info(_ message: String) {

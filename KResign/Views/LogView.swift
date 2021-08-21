@@ -29,7 +29,7 @@ struct LogView: NSViewRepresentable {
 
         if let textView = scrollView.documentView as? NSTextView {
             textView.textStorage?.append(append)
-            
+
             if let storage = textView.textStorage, storage.length > 0 {
                 textView.scrollRangeToVisible(NSRange(location: storage.length - 1, length: 1))
             }

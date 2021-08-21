@@ -9,16 +9,23 @@ import SwiftUI
 
 struct ProvisioningProfilePicker: View {
     @Binding var provisioningProfile: ProvisioningProfile?
+    @State var appedProvisioningProfile: [ProvisioningProfile]
     @State private var provisioningProfiles: [ProvisioningProfile] = []
+
+    private var allItems: [ProvisioningProfile] {
+        provisioningProfiles +
+            appedProvisioningProfile.filter { !provisioningProfiles.contains($0) }
+    }
 
     var body: some View {
         HStack {
             ZStack(alignment: .leading) {
 
                 Picker("", selection: $provisioningProfile) {
-                    ForEach(provisioningProfiles, id: \.self) {
+                    ForEach(allItems, id: \.self) {
                         // 这里必须 as ProvisioningProfile? 否则和 selection Type 不匹配
-                        Text($0.name).tag($0 as ProvisioningProfile?)
+                        Text($0.name)
+                            .tag($0 as ProvisioningProfile?)
                     }
                 }.labelsHidden()
 
@@ -30,23 +37,25 @@ struct ProvisioningProfilePicker: View {
             }
 
             Button("↻") {
-                reloadProvisioningProfiles()
+                provisioningProfile = nil
+                loadProvisioningProfiles()
             }
         }
-
         .onAppear(perform: {
-            reloadProvisioningProfiles()
+            loadProvisioningProfiles()
         })
     }
 
-    private func reloadProvisioningProfiles() {
-        provisioningProfile = nil
+    private func loadProvisioningProfiles() {
         provisioningProfiles = FileHelper.share.getProvisioningProfiles()
     }
 }
 
 struct ProvisioningProfilePicker_Previews: PreviewProvider {
     static var previews: some View {
-        ProvisioningProfilePicker(provisioningProfile: .constant(nil))
+        ProvisioningProfilePicker(
+            provisioningProfile: .constant(nil),
+            appedProvisioningProfile: []
+        )
     }
 }

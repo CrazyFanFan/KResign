@@ -38,7 +38,7 @@ struct ProvisioningProfile: Hashable {
 
             let bufferPointer: UnsafePointer<UInt8> = bufferRawBufferPointer.baseAddress!.assumingMemoryBound(to: UInt8.self)
             let rawPtr = UnsafeRawPointer(bufferPointer)
-            //USE THE rawPtr
+            // USE THE rawPtr
 
             CMSDecoderUpdateMessage(decoder, rawPtr, data.count)
             CMSDecoderFinalizeMessage(decoder)

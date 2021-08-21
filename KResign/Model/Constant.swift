@@ -29,4 +29,5 @@ enum BundleKey {
     static var kKeychainAccessGroups: String { "keychain-access-groups" }
     static var kIconNormal: String { "iconNormal" }
     static var kIconRetina: String { "iconRetina" }
+    static var kPlugIns: String { "PlugIns" }
 }

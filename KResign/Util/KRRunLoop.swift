@@ -10,15 +10,15 @@ import Foundation
 class IDRunLoop {
     var isSuspend: Bool = false
 
-    func run(_ handler: () -> ()) {
+    func run(_ handler: () -> Void) {
         isSuspend = false
 
         DispatchQueue.global().async {
-            
+
         }
     }
 
-    func stop(_ complete: () -> ()) {
+    func stop(_ complete: () -> Void) {
 
     }
 }
