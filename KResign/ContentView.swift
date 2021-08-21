@@ -13,8 +13,6 @@ struct ContentView: View {
     @StateObject var logger: Logger = Logger.shared
     @StateObject var ipaTool = IPATools()
     @State private var certificate: Certificate?
-    @State private var provisioningProfile: ProvisioningProfile?
-
     @State private var log: NSAttributedString?
     @State private var log2: String = ""
 
@@ -22,25 +20,22 @@ struct ContentView: View {
         ZStack {
             VStack {
                 IPAPicker(path: $ipaTool.ipaPath)
+                ResultSavePathPicker(path: $ipaTool.savePath)
+                
                 CertificatePicker(certificate: $certificate)
 
-                ForEach(ipaTool.appInfos.indices, id: \.self) { index in
-                    AppInfoView(
-                        appedProvisioningProfile: ipaTool.appInfos.map { $0.provisioning },
-                        app: $ipaTool.appInfos[index]
-                    )
-                }
-
+                AppInfosView(appInfos: $ipaTool.appInfos)
+                
                 LogView(append: $logger.append)
                     .frame(minHeight: 100)
             }
-            if ipaTool.isUnziping {
+            if ipaTool.isUnzipping {
                 ActivityIndicator().frame(width: 100, height: 100, alignment: .center)
             }
         }
         .padding()
-        .frame(minWidth: 550, minHeight: 350, alignment: .topLeading)
-        .disabled(ipaTool.isUnziping)
+        .frame(minWidth: 750, minHeight: 350, alignment: .topLeading)
+        .disabled(ipaTool.isUnzipping)
     }
 }
 

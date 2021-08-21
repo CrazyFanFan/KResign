@@ -1,18 +1,18 @@
 //
-//  IPAPicker.swift
+//  ResultSavePathPicker.swift
 //  KResign
 //
-//  Created by Crazy凡 on 2021/8/20.
+//  Created by Crazy凡 on 2021/8/22.
 //
 
 import SwiftUI
 
-struct IPAPicker: View {
+struct ResultSavePathPicker: View {
     @Binding var path: String
 
     var body: some View {
         HStack {
-            TextField("Pick an ipa file.", text: $path)
+            TextField("Pick a directory to save resigned ipa.", text: $path)
             Button("Browser") {
                 picker()
             }
@@ -21,11 +21,10 @@ struct IPAPicker: View {
 
     private func picker() {
         let panel = NSOpenPanel()
-        panel.canChooseFiles = true
-        panel.canChooseDirectories = false
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
         panel.allowsMultipleSelection = false
         panel.allowsOtherFileTypes = false
-        panel.allowedFileTypes = ["IPA"]
 
         if panel.runModal() == .OK, let url = panel.urls.last {
             self.path = url.path
@@ -33,8 +32,8 @@ struct IPAPicker: View {
     }
 }
 
-struct IPAPicker_Previews: PreviewProvider {
+struct ResultSavePathPicker_Previews: PreviewProvider {
     static var previews: some View {
-        IPAPicker(path: .constant(""))
+        ResultSavePathPicker(path: .constant(""))
     }
 }

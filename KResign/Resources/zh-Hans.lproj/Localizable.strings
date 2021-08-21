@@ -10,3 +10,4 @@
 "Browser" = "浏览";
 "Select a certificate" = "请选择一个证书";
 "Select a provisioninp profile" = "请选择一个描述文件";
+"Pick a directory to save resigned ipa." = "选择一个目录存储重签后的文件。";

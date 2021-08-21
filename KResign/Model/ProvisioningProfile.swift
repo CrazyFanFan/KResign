@@ -19,6 +19,7 @@ struct ProvisioningProfile: Hashable {
     private(set) var timeToLive: Int
     private(set) var applicationIdentifier: String
     private(set) var bundleIdentifier: String
+    private(set) var bundleIdentifierWithoutTeamID: String
     private(set) var certificates: [Data]
     private(set) var version: Int
     private(set) var prefixes: [String]
@@ -90,5 +91,7 @@ struct ProvisioningProfile: Hashable {
         self.UUID = value(for: "UUID") ?? ""
         self.prefixes = value(for: "ApplicationIdentifierPrefix") ?? []
         self.path = fileURL
+        self.bundleIdentifierWithoutTeamID = self.bundleIdentifier
+            .replacingOccurrences(of: teamIdentifier + ".", with: "")
     }
 }

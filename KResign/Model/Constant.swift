@@ -30,4 +30,5 @@ enum BundleKey {
     static var kIconNormal: String { "iconNormal" }
     static var kIconRetina: String { "iconRetina" }
     static var kPlugIns: String { "PlugIns" }
+    static var kDesktop: String { "Desktop" }
 }

@@ -7,17 +7,19 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class IPATools: ObservableObject {
     private var cancellables: [AnyCancellable] = .init()
 
+    @Published var savePath: String
     @Published var ipaPath: String = "" {
         didSet {
             startParse()
         }
     }
 
-    @Published var isUnziping: Bool = false
+    @Published var isUnzipping: Bool = false
     @Published var appInfos: [AppInfo] = []
 
     @inline(__always)
@@ -30,12 +32,13 @@ class IPATools: ObservableObject {
     private var extensionsFileURLs: [URL]?
 
     init() {
+        savePath = URL(fileURLWithPath: NSHomeDirectory())
+            .appendingPathComponent(BundleKey.kDesktop)
+            .path
     }
 
     private func unzipURL(for ipaPath: URL) -> URL {
-        URL(fileURLWithPath: NSTemporaryDirectory())
-            .appendingPathComponent("kResign")
-            .appendingPathComponent("unzip")
+        workPath
             .appendingPathComponent(ipaPath.deletingPathExtension().lastPathComponent)
             .appendingPathComponent(Formatter.date.string(from: .init()).replacingOccurrences(of: "/", with: "-"))
     }
@@ -44,8 +47,11 @@ class IPATools: ObservableObject {
         let source = URL(fileURLWithPath: ipaPath)
         let target = unzipURL(for: source)
         DispatchQueue.main.async {
-            self.isUnziping = true
+            self.isUnzipping = true
         }
+
+        try? manager.removeItem(at: workPath)
+
         FileHelper.share.unzip(fileAt: source, to: target)
             .sink { error in
                 print(error)
@@ -102,8 +108,11 @@ class IPATools: ObservableObject {
         let appInfos = allAppInfo.compactMap { load(from: $0, mainBundleID: info.bundleID) }
 
         DispatchQueue.main.async {
+            ProvisioningProfileManager.shared
+                .append(provisioningProfiles: appInfos.map { $0.provisioning})
+
             self.appInfos = appInfos
-            self.isUnziping = false
+            self.isUnzipping = false
         }
     }
 
