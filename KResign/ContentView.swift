@@ -31,7 +31,7 @@ struct ContentView: View {
             }
         }
         .padding()
-        .frame(minWidth: 550, idealWidth: 600, alignment: .topLeading)
+        .frame(minWidth: 650, idealWidth: 600, alignment: .topLeading)
         .disabled(ipaTool.isUnzipping)
     }
 }

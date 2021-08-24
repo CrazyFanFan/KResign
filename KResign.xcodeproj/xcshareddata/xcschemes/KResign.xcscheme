@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63B3282E26CFAC8B009219B7"
+               BlueprintIdentifier = "55ABDC65DE2147DE900BCD4217822ACD"
                BuildableName = "KResign.app"
                BlueprintName = "KResign"
                ReferencedContainer = "container:KResign.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63B3282E26CFAC8B009219B7"
+            BlueprintIdentifier = "55ABDC65DE2147DE900BCD4217822ACD"
             BuildableName = "KResign.app"
             BlueprintName = "KResign"
             ReferencedContainer = "container:KResign.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63B3282E26CFAC8B009219B7"
+            BlueprintIdentifier = "55ABDC65DE2147DE900BCD4217822ACD"
             BuildableName = "KResign.app"
             BlueprintName = "KResign"
             ReferencedContainer = "container:KResign.xcodeproj">

@@ -35,7 +35,7 @@ class IPATools: ObservableObject {
         savePath = URL(fileURLWithPath: NSHomeDirectory())
             .appendingPathComponent(BundleKey.kDesktop)
             .path
-        
+
         try? manager.createDirectory(atPath: workPath.path, withIntermediateDirectories: true, attributes: nil)
     }
 
@@ -46,22 +46,26 @@ class IPATools: ObservableObject {
     }
 
     private func startParse() {
-        let source = URL(fileURLWithPath: ipaPath)
-        let target = unzipURL(for: source)
-        DispatchQueue.main.async {
-            self.isUnzipping = true
+        autoreleasepool { [unowned self] in
+            let source = URL(fileURLWithPath: ipaPath)
+            let target = unzipURL(for: source)
+            DispatchQueue.main.async {
+                self.isUnzipping = true
+            }
+
+            try? manager.removeItem(at: workPath)
+
+            FileHelper.share.unzip(fileAt: source, to: target)
+                .sink { error in
+                    print(error)
+                } receiveValue: { [weak self] isSuccess in
+                    if isSuccess {
+                        autoreleasepool {
+                            self?.loadApp(at: target)
+                        }
+                    }
+                }.store(in: &cancellables)
         }
-
-        try? manager.removeItem(at: workPath)
-
-        FileHelper.share.unzip(fileAt: source, to: target)
-            .sink { error in
-                print(error)
-            } receiveValue: { [weak self] isSuccess in
-                if isSuccess {
-                    self?.loadApp(at: target)
-                }
-            }.store(in: &cancellables)
     }
 
     private func loadApp(at path: URL) {
@@ -107,7 +111,11 @@ class IPATools: ObservableObject {
         // todo main
         let info = load(from: mainAppFileURL, mainBundleID: "")!
 
-        let appInfos = allAppInfo.compactMap { load(from: $0, mainBundleID: info.bundleID) }
+        let appInfos = allAppInfo.compactMap { path in
+            autoreleasepool {
+                load(from: path, mainBundleID: info.bundleID)
+            }
+        }
 
         DispatchQueue.main.async {
             ProvisioningProfileManager.shared
@@ -124,10 +132,9 @@ class IPATools: ObservableObject {
         let name: String
         if manager.fileExists(atPath: infoPlistURL.path) {
             let infoPlistDict = NSDictionary(contentsOfFile: infoPlistURL.path) as? [String: Any]
-            if let tmpBundleID = infoPlistDict?[BundleKey.kCFBundleIdentifier] as? String,
-               let tmpName = infoPlistDict?[BundleKey.kCFBundleDisplayName] as? String {
+            if let tmpBundleID = infoPlistDict?[BundleKey.kCFBundleIdentifier] as? String {
                 bundleID = tmpBundleID
-                name = tmpName
+                name = infoPlistDict?[BundleKey.kCFBundleDisplayName] as? String ?? "UnKonwn"
             } else {
                 // TODO "Not found info.plist"
                 return nil

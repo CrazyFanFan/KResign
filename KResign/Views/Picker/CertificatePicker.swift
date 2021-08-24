@@ -29,8 +29,7 @@ struct CertificatePicker: View {
                 }
             }
 
-            Button("↻") {
-                certificate = nil
+            Button("⟳") {
                 manager.reload()
             }
         }

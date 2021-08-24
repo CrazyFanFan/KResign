@@ -25,7 +25,6 @@ class FileHelper {
     }
 
     func unzip(fileAt from: URL, to target: URL) -> AnyPublisher<Bool, Error> {
-
         let publisher = PassthroughSubject<Bool, Error>()
 
         let task = Process()
@@ -58,24 +57,24 @@ class FileHelper {
     func zip(fileAt from: URL, to target: URL) -> AnyPublisher<Bool, Error> {
 
         let publisher = PassthroughSubject<Bool, Error>()
+        autoreleasepool {
+            let task = Process()
+            task.launchPath = ResignDependencyTools.zip.rawValue
+            task.currentDirectoryPath = from.path
+            task.arguments = ["-qry", target.path, "."]
 
-        let task = Process()
-        task.launchPath = ResignDependencyTools.zip.rawValue
-        task.currentDirectoryPath = from.path
-        task.arguments = ["-qry", target.path, "."]
+            DispatchQueue.global().async { [unowned self] in
+                task.launch()
+                task.waitUntilExit()
 
-        DispatchQueue.global().async { [unowned self] in
-            task.launch()
-            task.waitUntilExit()
-
-            if task.terminationStatus == 0, self.manager.fileExists(atPath: target.path) {
-                publisher.send(true)
-            } else {
-                publisher.send(false)
+                if task.terminationStatus == 0, self.manager.fileExists(atPath: target.path) {
+                    publisher.send(true)
+                } else {
+                    publisher.send(false)
+                }
+                publisher.send(completion: .finished)
             }
-            publisher.send(completion: .finished)
         }
-
         return publisher.eraseToAnyPublisher()
     }
 }

@@ -12,14 +12,12 @@ struct AppInfosView: View {
 
     var body: some View {
         if !appInfos.isEmpty {
-            List {
+            ScrollView {
                 ForEach(appInfos.indices, id: \.self) { index in
                     AppInfoView(app: $appInfos[index])
                     Color.secondary.opacity(0.75).frame(height: 1)
                 }
-            }
-            .listStyle(PlainListStyle())
-            .frame(minWidth: 500, minHeight: 140, idealHeight: 140)
+            }.frame(minHeight: 200)
         }
     }
 }
@@ -58,7 +56,9 @@ struct AppInfoView: View {
                         Text("Old: ")
                         TextField("", text: .constant("\(app.provisioning.name) (\(app.provisioning.bundleIdentifierWithoutTeamID))"))
                             .disabled(true)
-                        Button("Reset") {
+
+                        // button for reset to old provisioning
+                        Button("⟲") {
                             withAnimation {
                                 app.newProvisioning = app.provisioning
                             }

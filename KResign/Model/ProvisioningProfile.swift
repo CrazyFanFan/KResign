@@ -33,7 +33,7 @@ struct ProvisioningProfile: Hashable {
 
         CMSDecoderCreate(&decoder)
 
-        guard let decoder = decoder, let data = try? Data(contentsOf: fileURL) else { return nil }
+        guard let tmpDecoder = decoder, let data = try? Data(contentsOf: fileURL) else { return nil }
 
         let plist: Any? = data.withUnsafeBytes { (bufferRawBufferPointer) -> Any? in
 
@@ -41,9 +41,9 @@ struct ProvisioningProfile: Hashable {
             let rawPtr = UnsafeRawPointer(bufferPointer)
             // USE THE rawPtr
 
-            CMSDecoderUpdateMessage(decoder, rawPtr, data.count)
-            CMSDecoderFinalizeMessage(decoder)
-            CMSDecoderCopyContent(decoder, &dataRef)
+            CMSDecoderUpdateMessage(tmpDecoder, rawPtr, data.count)
+            CMSDecoderFinalizeMessage(tmpDecoder)
+            CMSDecoderCopyContent(tmpDecoder, &dataRef)
             if let dataRef = dataRef,
                let plist = try? PropertyListSerialization.propertyList(
                 from: dataRef as Data,
@@ -93,5 +93,8 @@ struct ProvisioningProfile: Hashable {
         self.path = fileURL
         self.bundleIdentifierWithoutTeamID = self.bundleIdentifier
             .replacingOccurrences(of: teamIdentifier + ".", with: "")
+
+        decoder = nil
+        dataRef = nil
     }
 }

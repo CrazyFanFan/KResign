@@ -20,11 +20,11 @@ struct ToolView: View {
             }
 
             Button("Reset") {
-                
+
             }
 
-            Button ("Start") {
-                
+            Button("Start") {
+
             }
         }
     }

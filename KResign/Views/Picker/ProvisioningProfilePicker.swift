@@ -24,18 +24,52 @@ struct ProvisioningProfilePicker: View {
                     }
                 }
                 .labelsHidden()
+
                 if provisioningProfile == nil {
                     Text("Select a provisioning profile")
                         .foregroundColor(.secondary.opacity(0.75))
                         .padding(.leading, 3)
                 }
             }
-
-            Button("↻") {
-                provisioningProfile = nil
+            Button("⟳") {
                 manager.reload()
             }
         }
+        .onDrop(of: [.fileURL], isTargeted: $isTarget) { loadPath(from: $0) }
+    }
+
+    private func loadPath(from providers: [NSItemProvider]) -> Bool {
+        guard let item = providers.first(where: { $0.canLoadObject(ofClass: URL.self) }) else { return false }
+
+        item.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { (data, error) in
+            if let _ = error {
+                // TODO error
+                return
+            }
+
+            guard let urlData = data as? Data,
+                  let urlString = String(data: urlData, encoding: .utf8),
+                  let url = URL(string: urlString) else {
+                // TODO error
+                return
+            }
+
+            // map to fileURL
+            let fileURL = URL(fileURLWithPath: url.path)
+
+            guard manager.provisionExtensions.contains(fileURL.pathExtension),
+                    let provisioningProfile = ProvisioningProfile(with: fileURL) else {
+                // TODO error
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.manager.append(provisioningProfile: provisioningProfile)
+                self.provisioningProfile = provisioningProfile
+            }
+        }
+
+        return true
     }
 }
 

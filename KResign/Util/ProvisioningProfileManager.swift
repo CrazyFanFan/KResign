@@ -35,16 +35,18 @@ class ProvisioningProfileManager: ObservableObject {
     }
 
     private func loadLocalProvisioningProfiles() -> [ProvisioningProfile] {
-        do {
-            return try manager.contentsOfDirectory(atPath: path)
-                .map { "\(path)/\($0)" }
-                .filter { manager.fileExists(atPath: $0) } // 确认文件存在
-                .map { URL(fileURLWithPath: $0) } // 转成URL
-                .filter { provisionExtensions.contains($0.pathExtension.lowercased()) } // 确认文件扩展名
-                .compactMap { ProvisioningProfile(with: $0) } // 转换成功
-        } catch {
-            // TODO log error
-            return []
+        autoreleasepool {
+            do {
+                return try manager.contentsOfDirectory(atPath: path)
+                    .map { "\(path)/\($0)" }
+                    .filter { manager.fileExists(atPath: $0) } // 确认文件存在
+                    .map { URL(fileURLWithPath: $0) } // 转成URL
+                    .filter { provisionExtensions.contains($0.pathExtension.lowercased()) } // 确认文件扩展名
+                    .compactMap { ProvisioningProfile(with: $0) } // 转换成功
+            } catch {
+                // TODO log error
+                return []
+            }
         }
     }
 

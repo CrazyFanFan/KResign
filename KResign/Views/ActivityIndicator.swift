@@ -32,6 +32,7 @@ struct ActivityIndicator: View {
                                 .repeatForever(autoreverses: false)
                     )
                 }
+
                 if let message = tipMessage {
                     Text(NSLocalizedString(message, comment: message) as String)
                 }
