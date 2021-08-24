@@ -9,6 +9,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct ProvisioningProfilePicker: View {
+    var defaultProvisioningProfile: ProvisioningProfile?
     @Binding var provisioningProfile: ProvisioningProfile?
     @State private var manager = ProvisioningProfileManager.shared
     @State private var isTarget = false
@@ -19,7 +20,7 @@ struct ProvisioningProfilePicker: View {
                 Picker("", selection: $provisioningProfile) {
                     ForEach(manager.provisioningProfiles, id: \.self) {
                         // 这里必须 as ProvisioningProfile? 否则和 selection Type 不匹配
-                        Text("\($0.name) (\($0.bundleIdentifierWithoutTeamID))")
+                        (Text("\($0.name) (\($0.bundleIdentifierWithoutTeamID))") + append(for: $0))
                             .tag($0 as ProvisioningProfile?)
                     }
                 }
@@ -36,6 +37,12 @@ struct ProvisioningProfilePicker: View {
             }
         }
         .onDrop(of: [.fileURL], isTargeted: $isTarget) { loadPath(from: $0) }
+    }
+
+    private func append(for provisioningProfile: ProvisioningProfile?) -> Text {
+        (provisioningProfile == defaultProvisioningProfile ?
+            Text("  (Default)").bold().font(.footnote).foregroundColor(.green.opacity(0.75)):
+            Text(""))
     }
 
     private func loadPath(from providers: [NSItemProvider]) -> Bool {

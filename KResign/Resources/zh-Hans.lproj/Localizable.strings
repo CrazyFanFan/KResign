@@ -17,3 +17,4 @@
 "Unzipping" = "解压中…";
 "Old: " = "旧: ";
 "New: " = "新: ";
+"  (Default)" = "  ●"; // Any new icon to means default?

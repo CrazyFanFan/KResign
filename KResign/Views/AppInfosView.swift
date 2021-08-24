@@ -15,7 +15,6 @@ struct AppInfosView: View {
             ScrollView {
                 ForEach(appInfos.indices, id: \.self) { index in
                     AppInfoView(app: $appInfos[index])
-                    Color.secondary.opacity(0.75).frame(height: 1)
                 }
             }.frame(minHeight: 200)
         }
@@ -46,28 +45,10 @@ struct AppInfoView: View {
                 Spacer()
             }.frame(width: 100)
 
-            if app.newProvisioning != app.provisioning {
-                VStack {
-                    HStack {
-                        Text("New: ")
-                        ProvisioningProfilePicker(provisioningProfile: $app.newProvisioning)
-                    }
-                    HStack {
-                        Text("Old: ")
-                        TextField("", text: .constant("\(app.provisioning.name) (\(app.provisioning.bundleIdentifierWithoutTeamID))"))
-                            .disabled(true)
-
-                        // button for reset to old provisioning
-                        Button("⟲") {
-                            withAnimation {
-                                app.newProvisioning = app.provisioning
-                            }
-                        }
-                    }
-                }
-            } else {
-                ProvisioningProfilePicker(provisioningProfile: $app.newProvisioning)
-            }
+            ProvisioningProfilePicker(
+                defaultProvisioningProfile: app.provisioning,
+                provisioningProfile: $app.newProvisioning
+            )
         }
     }
 }
