@@ -20,7 +20,7 @@ class IPATools: ObservableObject {
     }
 
     @Published var isUnzipping: Bool = false
-    @Published var appInfos: [AppInfo] = []
+    @Published var appInfos: [AppProvisioningProfileInfo] = []
 
     @inline(__always)
     private var manager: FileManager { .default }
@@ -126,7 +126,7 @@ class IPATools: ObservableObject {
         }
     }
 
-    private func load(from appRootFileURL: URL, mainBundleID: String) -> AppInfo? {
+    private func load(from appRootFileURL: URL, mainBundleID: String) -> AppProvisioningProfileInfo? {
         let infoPlistURL = appRootFileURL.appendingPathComponent(BundleKey.kInfoPlistFilename)
         let bundleID: String
         let name: String
@@ -164,7 +164,7 @@ class IPATools: ObservableObject {
             return nil
         }
 
-        return AppInfo(
+        return AppProvisioningProfileInfo(
             rootURL: appRootFileURL,
             name: name,
             bundleID: bundleID,

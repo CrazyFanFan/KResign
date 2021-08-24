@@ -20,7 +20,7 @@ struct ContentView: View {
                 IPAPicker(path: $ipaTool.ipaPath)
                 ResultSavePathPicker(path: $ipaTool.savePath)
                 CertificatePicker(certificate: $certificate)
-                AppInfosView(appInfos: $ipaTool.appInfos)
+                AppProvisioningProfilesInfoView(appInfos: $ipaTool.appInfos)
                 ToolView(ipaTool: ipaTool)
                 LogView(append: $logger.append)
                     .frame(height: 180)

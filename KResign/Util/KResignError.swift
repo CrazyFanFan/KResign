@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FileHelperError: Error {
+enum KResignError: Error {
     case filedToReadSecurity
     case noSignignCertificates
 }

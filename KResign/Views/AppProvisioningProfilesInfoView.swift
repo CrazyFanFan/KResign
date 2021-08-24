@@ -7,28 +7,28 @@
 
 import SwiftUI
 
-struct AppInfosView: View {
-    @Binding var appInfos: [AppInfo]
+struct AppProvisioningProfilesInfoView: View {
+    @Binding var appInfos: [AppProvisioningProfileInfo]
 
     var body: some View {
         if !appInfos.isEmpty {
             ScrollView {
                 ForEach(appInfos.indices, id: \.self) { index in
-                    AppInfoView(app: $appInfos[index])
+                    AppProvisioningProfileInfoView(app: $appInfos[index])
                 }
             }.frame(minHeight: 200)
         }
     }
 }
 
-struct AppInfosView_Previews: PreviewProvider {
+struct AppProvisioningProfilesInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        AppInfosView(appInfos: .constant([]))
+        AppProvisioningProfilesInfoView(appInfos: .constant([]))
     }
 }
 
-struct AppInfoView: View {
-    @Binding var app: AppInfo
+struct AppProvisioningProfileInfoView: View {
+    @Binding var app: AppProvisioningProfileInfo
     @State private var isNameShow: Bool = false
 
     var body: some View {
@@ -53,9 +53,9 @@ struct AppInfoView: View {
     }
 }
 
-struct AppInfoView_Previews: PreviewProvider {
+struct AppProvisioningProfileInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        AppInfoView(app: .constant(.init(
+        AppProvisioningProfileInfoView(app: .constant(.init(
             rootURL: URL(fileURLWithPath: ""),
             name: "name",
             bundleID: "",

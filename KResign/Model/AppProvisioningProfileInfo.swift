@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct AppInfo: Hashable {
+struct AppProvisioningProfileInfo: Hashable {
     var rootURL: URL
     var name: String
     var bundleID: String

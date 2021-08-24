@@ -63,7 +63,7 @@ class CertificatesManager: ObservableObject {
                   let securityString = String(data: data, encoding: .utf8),
                   !securityString.isEmpty else {
                 Logger.error("Read certificates failed.")
-                publisher.send(completion: .failure(FileHelperError.filedToReadSecurity))
+                publisher.send(completion: .failure(KResignError.filedToReadSecurity))
                 return
             }
 
@@ -78,7 +78,7 @@ class CertificatesManager: ObservableObject {
             if certificates.isEmpty {
                 Logger.warning("Certificates count is zero.")
 
-                publisher.send(completion: .failure(FileHelperError.noSignignCertificates))
+                publisher.send(completion: .failure(KResignError.noSignignCertificates))
             } else {
                 publisher.send(certificates)
                 publisher.send(completion: .finished)
