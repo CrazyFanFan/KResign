@@ -11,3 +11,9 @@
 "Select a certificate" = "请选择一个证书";
 "Select a provisioninp profile" = "请选择一个描述文件";
 "Pick a directory to save resigned ipa." = "选择一个目录存储重签后的文件。";
+"Open cache" = "缓存目录";
+"Start" = "开始";
+"Reset" = "重置";
+"Unzipping" = "解压中…";
+"Old: " = "旧: ";
+"New: " = "新: ";

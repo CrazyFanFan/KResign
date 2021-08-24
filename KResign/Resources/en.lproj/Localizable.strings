@@ -11,3 +11,9 @@
 "Select a certificate" = "Select a certificate";
 "Select a provisioninp profile" = "Select a provisioninp profile";
 "Pick a directory to save resigned ipa." = "Pick a directory to save resigned ipa.";
+"Open cache" = "Show cache";
+"Start" = "Start";
+"Reset" = "Reset";
+"Unzipping" = "Unzipping...";
+"Old: " = "Old: ";
+"New: " = "New: ";

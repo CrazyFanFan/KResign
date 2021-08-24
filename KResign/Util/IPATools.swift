@@ -25,7 +25,7 @@ class IPATools: ObservableObject {
     @inline(__always)
     private var manager: FileManager { .default }
 
-    private var workPath: URL =  URL(fileURLWithPath: NSTemporaryDirectory())
+    private(set) var workPath: URL =  URL(fileURLWithPath: NSTemporaryDirectory())
         .appendingPathComponent("kResign")
         .appendingPathComponent("unzip")
     private var mainAppFileURL: URL?
@@ -35,6 +35,8 @@ class IPATools: ObservableObject {
         savePath = URL(fileURLWithPath: NSHomeDirectory())
             .appendingPathComponent(BundleKey.kDesktop)
             .path
+        
+        try? manager.createDirectory(atPath: workPath.path, withIntermediateDirectories: true, attributes: nil)
     }
 
     private func unzipURL(for ipaPath: URL) -> URL {
@@ -119,10 +121,13 @@ class IPATools: ObservableObject {
     private func load(from appRootFileURL: URL, mainBundleID: String) -> AppInfo? {
         let infoPlistURL = appRootFileURL.appendingPathComponent(BundleKey.kInfoPlistFilename)
         let bundleID: String
+        let name: String
         if manager.fileExists(atPath: infoPlistURL.path) {
             let infoPlistDict = NSDictionary(contentsOfFile: infoPlistURL.path) as? [String: Any]
-            if let tmpBundleID = infoPlistDict?[BundleKey.kCFBundleIdentifier] as? String {
+            if let tmpBundleID = infoPlistDict?[BundleKey.kCFBundleIdentifier] as? String,
+               let tmpName = infoPlistDict?[BundleKey.kCFBundleDisplayName] as? String {
                 bundleID = tmpBundleID
+                name = tmpName
             } else {
                 // TODO "Not found info.plist"
                 return nil
@@ -154,6 +159,7 @@ class IPATools: ObservableObject {
 
         return AppInfo(
             rootURL: appRootFileURL,
+            name: name,
             bundleID: bundleID,
             mainBundleID: mainBundleID,
             provisioning: provisioningProfile

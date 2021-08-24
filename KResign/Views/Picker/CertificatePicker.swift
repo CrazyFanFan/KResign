@@ -9,14 +9,14 @@ import SwiftUI
 import Combine
 
 struct CertificatePicker: View {
+    @StateObject private var manager: CertificatesManager = .shared
     @Binding var certificate: Certificate?
-    @State private var certificates: [Certificate] = []
 
     var body: some View {
         HStack {
             ZStack(alignment: .leading) {
                 Picker("", selection: $certificate) {
-                    ForEach(certificates, id: \.self) {
+                    ForEach(manager.certificates, id: \.self) {
                         // 这里必须 as Certificate? 否则和 selection Type 不匹配
                         Text($0.name).tag($0 as Certificate?)
                     }
@@ -31,25 +31,9 @@ struct CertificatePicker: View {
 
             Button("↻") {
                 certificate = nil
-                loadCertificates()
+                manager.reload()
             }
         }
-        .onAppear(perform: {
-            loadCertificates()
-        })
-    }
-
-    private func loadCertificates() {
-
-        var cancellable: AnyCancellable? = FileHelper.share.readCertificates()
-            .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
-            .sink { error in
-                print(error)
-                cancellable = nil
-            } receiveValue: { certificates in
-                self.certificates = certificates
-            }
     }
 }
 

@@ -10,6 +10,7 @@ import Combine
 
 struct AppInfo: Hashable {
     var rootURL: URL
+    var name: String
     var bundleID: String
     var mainBundleID: String
     var provisioning: ProvisioningProfile
@@ -20,11 +21,13 @@ struct AppInfo: Hashable {
 
     init(
         rootURL: URL,
+        name: String,
         bundleID: String,
         mainBundleID: String,
         provisioning: ProvisioningProfile
     ) {
         self.rootURL = rootURL
+        self.name = name
         self.bundleID = bundleID
         self.mainBundleID = mainBundleID
         self.provisioning = provisioning

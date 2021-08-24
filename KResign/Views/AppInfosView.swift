@@ -11,11 +11,16 @@ struct AppInfosView: View {
     @Binding var appInfos: [AppInfo]
 
     var body: some View {
-//        VStack {
-            ForEach(appInfos.indices, id: \.self) { index in
-                AppInfoView(app: $appInfos[index])
+        if !appInfos.isEmpty {
+            List {
+                ForEach(appInfos.indices, id: \.self) { index in
+                    AppInfoView(app: $appInfos[index])
+                    Color.secondary.opacity(0.75).frame(height: 1)
+                }
             }
-//        }
+            .listStyle(PlainListStyle())
+            .frame(minWidth: 500, minHeight: 140, idealHeight: 140)
+        }
     }
 }
 
@@ -27,11 +32,42 @@ struct AppInfosView_Previews: PreviewProvider {
 
 struct AppInfoView: View {
     @Binding var app: AppInfo
+    @State private var isNameShow: Bool = false
 
     var body: some View {
-        HStack {
-            Text(app.display + ":").font(.body)
-            ProvisioningProfilePicker(provisioningProfile: $app.newProvisioning)
+        HStack(alignment: .top) {
+            HStack {
+                Text(app.display + ":").font(.body)
+                    .popover(isPresented: $isNameShow) {
+                        Text("Name: \(app.name)\nBundleID: \(app.bundleID)")
+                            .padding()
+                    }
+                    .onHover {
+                        isNameShow = $0
+                    }
+                Spacer()
+            }.frame(width: 100)
+
+            if app.newProvisioning != app.provisioning {
+                VStack {
+                    HStack {
+                        Text("New: ")
+                        ProvisioningProfilePicker(provisioningProfile: $app.newProvisioning)
+                    }
+                    HStack {
+                        Text("Old: ")
+                        TextField("", text: .constant("\(app.provisioning.name) (\(app.provisioning.bundleIdentifierWithoutTeamID))"))
+                            .disabled(true)
+                        Button("Reset") {
+                            withAnimation {
+                                app.newProvisioning = app.provisioning
+                            }
+                        }
+                    }
+                }
+            } else {
+                ProvisioningProfilePicker(provisioningProfile: $app.newProvisioning)
+            }
         }
     }
 }
@@ -39,9 +75,10 @@ struct AppInfoView: View {
 struct AppInfoView_Previews: PreviewProvider {
     static var previews: some View {
         AppInfoView(app: .constant(.init(
-                                    rootURL: URL(fileURLWithPath: ""),
-                                    bundleID: "",
-                                    mainBundleID: "",
-                                    provisioning: .init(with: URL(fileURLWithPath: ""))!)))
+            rootURL: URL(fileURLWithPath: ""),
+            name: "name",
+            bundleID: "",
+            mainBundleID: "",
+            provisioning: .init(with: URL(fileURLWithPath: ""))!)))
     }
 }

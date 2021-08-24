@@ -6,23 +6,24 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ProvisioningProfilePicker: View {
     @Binding var provisioningProfile: ProvisioningProfile?
-    @State private var provisioningProfileManager = ProvisioningProfileManager.shared
+    @State private var manager = ProvisioningProfileManager.shared
+    @State private var isTarget = false
 
     var body: some View {
         HStack {
             ZStack(alignment: .leading) {
-
                 Picker("", selection: $provisioningProfile) {
-                    ForEach(provisioningProfileManager.allProvisioningProfiles, id: \.self) {
+                    ForEach(manager.provisioningProfiles, id: \.self) {
                         // 这里必须 as ProvisioningProfile? 否则和 selection Type 不匹配
                         Text("\($0.name) (\($0.bundleIdentifierWithoutTeamID))")
                             .tag($0 as ProvisioningProfile?)
                     }
-                }.labelsHidden()
-
+                }
+                .labelsHidden()
                 if provisioningProfile == nil {
                     Text("Select a provisioning profile")
                         .foregroundColor(.secondary.opacity(0.75))
@@ -32,7 +33,7 @@ struct ProvisioningProfilePicker: View {
 
             Button("↻") {
                 provisioningProfile = nil
-                provisioningProfileManager.reload()
+                manager.reload()
             }
         }
     }

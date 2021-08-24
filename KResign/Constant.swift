@@ -32,3 +32,10 @@ enum BundleKey {
     static var kPlugIns: String { "PlugIns" }
     static var kDesktop: String { "Desktop" }
 }
+
+enum ResignDependencyTools: String, CaseIterable {
+    case zip = "/usr/bin/zip"
+    case unzip = "/usr/bin/unzip"
+    case codesign = "/usr/bin/codesign"
+    case security = "/usr/bin/security"
+}

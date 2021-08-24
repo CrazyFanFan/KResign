@@ -14,5 +14,4 @@ enum Formatter {
         formatter.timeStyle = .medium
         return formatter
     }()
-
 }
