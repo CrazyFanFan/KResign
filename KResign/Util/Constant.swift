@@ -34,6 +34,15 @@ enum BundleKey {
 }
 
 enum ResignDependencyTools: String, CaseIterable {
+    static let resign: String = {
+        guard let path = Bundle.main.path(forResource: "resign", ofType: "sh") else {
+            // TODO error
+            return ""
+        }
+        return path
+    }()
+
+    case bash = "/bin/bash"
     case zip = "/usr/bin/zip"
     case unzip = "/usr/bin/unzip"
     case codesign = "/usr/bin/codesign"

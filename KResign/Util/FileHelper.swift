@@ -8,23 +8,21 @@
 import Foundation
 import Combine
 
-class FileHelper {
-    static let share: FileHelper = .init()
+enum FileHelper {
+    static let workPath: URL =  URL(fileURLWithPath: NSTemporaryDirectory())
+        .appendingPathComponent("kResign")
 
     @inline(__always)
-    private var manager: FileManager { .default }
-
-    private init() {
-    }
+    private static var manager: FileManager { .default }
 
     /// 缺失的重签工具
     /// - Returns: 如果为空则表示重签依赖的工具齐全
-    func lackSupportUtility() -> [ResignDependencyTools] {
+    static func lackSupportUtility() -> [ResignDependencyTools] {
         ResignDependencyTools.allCases
             .filter { !manager.fileExists(atPath: $0.rawValue) }
     }
 
-    func unzip(fileAt from: URL, to target: URL) -> AnyPublisher<Bool, Error> {
+    static func unzip(fileAt from: URL, to target: URL) -> AnyPublisher<Bool, Error> {
         let publisher = PassthroughSubject<Bool, Error>()
 
         let task = Process()
@@ -39,11 +37,11 @@ class FileHelper {
                 .eraseToAnyPublisher()
         }
 
-        DispatchQueue.global().async { [unowned self] in
+        DispatchQueue.global().async {
             task.launch()
             task.waitUntilExit()
 
-            if task.terminationStatus == 0, self.manager.fileExists(atPath: target.path) {
+            if task.terminationStatus == 0, Self.manager.fileExists(atPath: target.path) {
                 publisher.send(true)
             } else {
                 publisher.send(false)
@@ -63,11 +61,11 @@ class FileHelper {
             task.currentDirectoryPath = from.path
             task.arguments = ["-qry", target.path, "."]
 
-            DispatchQueue.global().async { [unowned self] in
+            DispatchQueue.global().async {
                 task.launch()
                 task.waitUntilExit()
 
-                if task.terminationStatus == 0, self.manager.fileExists(atPath: target.path) {
+                if task.terminationStatus == 0, Self.manager.fileExists(atPath: target.path) {
                     publisher.send(true)
                 } else {
                     publisher.send(false)

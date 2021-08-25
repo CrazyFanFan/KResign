@@ -21,7 +21,16 @@ struct ContentView: View {
                 ResultSavePathPicker(path: $ipaTool.savePath)
                 CertificatePicker(certificate: $certificate)
                 AppProvisioningProfilesInfoView(appInfos: $ipaTool.appInfos)
-                ToolView(ipaTool: ipaTool)
+                VersionPicker(version: $ipaTool.shortVersion, buildVersion: $ipaTool.buildVersion)
+                ToolView(ipaTool: ipaTool, resign: {
+                    ResignTools.resign(
+                        ipa: URL(fileURLWithPath: ipaTool.ipaPath),
+                        with: certificate,
+                        newVersion: ipaTool.shortVersion,
+                        info: ipaTool.appInfos,
+                        target: ipaTool.savePath
+                    )
+                })
                 LogView(append: $logger.append)
                     .frame(height: 180)
             }
@@ -31,7 +40,7 @@ struct ContentView: View {
             }
         }
         .padding()
-        .frame(minWidth: 650, idealWidth: 600, alignment: .topLeading)
+        .frame(minWidth: 650, idealWidth: 650, alignment: .topLeading)
         .disabled(ipaTool.isUnzipping)
     }
 }

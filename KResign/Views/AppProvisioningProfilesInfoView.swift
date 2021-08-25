@@ -16,7 +16,7 @@ struct AppProvisioningProfilesInfoView: View {
                 ForEach(appInfos.indices, id: \.self) { index in
                     AppProvisioningProfileInfoView(app: $appInfos[index])
                 }
-            }.frame(minHeight: 200)
+            }.frame(minHeight: 150)
         }
     }
 }
@@ -35,6 +35,7 @@ struct AppProvisioningProfileInfoView: View {
         HStack(alignment: .top) {
             HStack {
                 Text(app.display + ":").font(.body)
+                    .lineLimit(1)
                     .popover(isPresented: $isNameShow) {
                         Text("Name: \(app.name)\nBundleID: \(app.bundleID)")
                             .padding()

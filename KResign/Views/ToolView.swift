@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ToolView: View {
+    typealias Handler = () -> Void
     @StateObject var ipaTool: IPATools
+
+    var resign: Handler?
+    var reset: Handler?
 
     var body: some View {
         HStack {
@@ -23,9 +27,7 @@ struct ToolView: View {
 
             }
 
-            Button("Start") {
-
-            }
+            Button("Start", action: resign ?? {})
         }
     }
 }

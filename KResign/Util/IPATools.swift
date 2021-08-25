@@ -21,6 +21,8 @@ class IPATools: ObservableObject {
 
     @Published var isUnzipping: Bool = false
     @Published var appInfos: [AppProvisioningProfileInfo] = []
+    @Published var shortVersion: String = ""
+    @Published var buildVersion: String = ""
 
     @inline(__always)
     private var manager: FileManager { .default }
@@ -55,7 +57,7 @@ class IPATools: ObservableObject {
 
             try? manager.removeItem(at: workPath)
 
-            FileHelper.share.unzip(fileAt: source, to: target)
+            FileHelper.unzip(fileAt: source, to: target)
                 .sink { error in
                     print(error)
                 } receiveValue: { [weak self] isSuccess in
@@ -68,8 +70,8 @@ class IPATools: ObservableObject {
         }
     }
 
-    private func loadApp(at path: URL) {
-        let payloadPath = path.appendingPathComponent(BundleKey.kPayloadDirName)
+    private func loadApp(at unzipFileURL: URL) {
+        let payloadPath = unzipFileURL.appendingPathComponent(BundleKey.kPayloadDirName)
         let content: [String]
         do {
             content = try manager.contentsOfDirectory(atPath: payloadPath.path)
@@ -91,29 +93,39 @@ class IPATools: ObservableObject {
 
         self.mainAppFileURL = mainAppFileURL
 
-        let pluginsDir = mainAppFileURL.appendingPathComponent(BundleKey.kPlugIns)
+        let pluginsPath = mainAppFileURL.appendingPathComponent(BundleKey.kPlugIns)
 
-        if manager.fileExists(atPath: pluginsDir.path) {
+        if manager.fileExists(atPath: pluginsPath.path) {
             let appx: [String]
             do {
-                appx = try manager.contentsOfDirectory(atPath: pluginsDir.path)
+                appx = try manager.contentsOfDirectory(atPath: pluginsPath.path)
             } catch {
                 appx = []
                 Logger.error("Get appx path failed.", error: error)
             }
 
-            let extensionsAppFileURLs = appx.map { pluginsDir.appendingPathComponent($0) }
+            let extensionsAppFileURLs = appx.map { pluginsPath.appendingPathComponent($0) }
             self.extensionsFileURLs = extensionsAppFileURLs
 
             allAppInfo += extensionsAppFileURLs
         }
 
-        // todo main
-        let info = load(from: mainAppFileURL, mainBundleID: "")!
+        let info = loadInfo(from: mainAppFileURL)
+        if let shortVersion = info?.shortVersion {
+            self.shortVersion = shortVersion
+        }
+        if let buildVersion = info?.buildVersion {
+            self.buildVersion = buildVersion
+        }
+
+        guard let bundleID = info?.bundleID else {
+            // TODO error
+            return
+        }
 
         let appInfos = allAppInfo.compactMap { path in
             autoreleasepool {
-                load(from: path, mainBundleID: info.bundleID)
+                load(from: path, mainBundleID: bundleID)
             }
         }
 
@@ -126,25 +138,23 @@ class IPATools: ObservableObject {
         }
     }
 
-    private func load(from appRootFileURL: URL, mainBundleID: String) -> AppProvisioningProfileInfo? {
+    private func loadInfo(from appRootFileURL: URL) -> (bundleID: String?, name: String?, shortVersion: String?, buildVersion: String?)? {
         let infoPlistURL = appRootFileURL.appendingPathComponent(BundleKey.kInfoPlistFilename)
-        let bundleID: String
-        let name: String
-        if manager.fileExists(atPath: infoPlistURL.path) {
-            let infoPlistDict = NSDictionary(contentsOfFile: infoPlistURL.path) as? [String: Any]
-            if let tmpBundleID = infoPlistDict?[BundleKey.kCFBundleIdentifier] as? String {
-                bundleID = tmpBundleID
-                name = infoPlistDict?[BundleKey.kCFBundleDisplayName] as? String ?? "UnKonwn"
-            } else {
-                // TODO "Not found info.plist"
-                return nil
-            }
-        } else {
-            // TODO "Not found info.plist"
-            return nil
-        }
 
-        let provisioningProfile: ProvisioningProfile
+        guard manager.fileExists(atPath: infoPlistURL.path),
+              let plist = NSDictionary(contentsOfFile: infoPlistURL.path) as? [String: Any] else {
+                  return nil
+              }
+
+        return (
+            plist[BundleKey.kCFBundleIdentifier] as? String,
+            plist[BundleKey.kCFBundleDisplayName] as? String,
+            plist[BundleKey.kCFBundleShortVersionString] as? String,
+            plist[BundleKey.kCFBundleVersion] as? String
+        )
+    }
+
+    private func loadProvisioningProfile(from appRootFileURL: URL) -> ProvisioningProfile? {
         do {
             let provisioningURL: URL? = try manager
                 .contentsOfDirectory(atPath: appRootFileURL.path)
@@ -152,9 +162,8 @@ class IPATools: ObservableObject {
                 .first { $0.hasSuffix("mobileprovision") || $0.hasSuffix("provisionprofile") }
                 .map { appRootFileURL.appendingPathComponent($0) }
 
-            if let provisioningURL = provisioningURL,
-               let tmpProvisioningProfile = ProvisioningProfile(with: provisioningURL) {
-                provisioningProfile = tmpProvisioningProfile
+            if let provisioningURL = provisioningURL {
+               return ProvisioningProfile(with: provisioningURL)
             } else {
                 // TOOD error
                 return nil
@@ -163,6 +172,22 @@ class IPATools: ObservableObject {
             // TODO Error
             return nil
         }
+    }
+
+    private func load(from appRootFileURL: URL, mainBundleID: String) -> AppProvisioningProfileInfo? {
+        let info = loadInfo(from: appRootFileURL)
+
+        guard let bundleID = info?.bundleID else {
+            // TODO "Not found info.plist"
+            return nil
+        }
+
+        guard let provisioningProfile = loadProvisioningProfile(from: appRootFileURL) else {
+            // TODO "Not found provisioningProfile"
+            return nil
+        }
+
+        let name = info?.name ?? "UnKonwn"
 
         return AppProvisioningProfileInfo(
             rootURL: appRootFileURL,

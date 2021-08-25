@@ -20,7 +20,7 @@ struct ProvisioningProfilePicker: View {
                 Picker("", selection: $provisioningProfile) {
                     ForEach(manager.provisioningProfiles, id: \.self) {
                         // 这里必须 as ProvisioningProfile? 否则和 selection Type 不匹配
-                        (Text("\($0.name) (\($0.bundleIdentifierWithoutTeamID))") + append(for: $0))
+                        (append(for: $0) + Text("\($0.name) (\($0.bundleIdentifierWithoutTeamID))"))
                             .tag($0 as ProvisioningProfile?)
                     }
                 }
@@ -41,7 +41,7 @@ struct ProvisioningProfilePicker: View {
 
     private func append(for provisioningProfile: ProvisioningProfile?) -> Text {
         (provisioningProfile == defaultProvisioningProfile ?
-            Text("  (Default)").bold().font(.footnote).foregroundColor(.green.opacity(0.75)):
+            Text("Default").bold().font(.footnote).foregroundColor(.green.opacity(0.75)):
             Text(""))
     }
 
