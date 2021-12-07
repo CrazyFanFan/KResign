@@ -112,10 +112,14 @@ class IPATools: ObservableObject {
 
         let info = loadInfo(from: mainAppFileURL)
         if let shortVersion = info?.shortVersion {
-            self.shortVersion = shortVersion
+            DispatchQueue.main.async {
+                self.shortVersion = shortVersion
+            }
         }
         if let buildVersion = info?.buildVersion {
-            self.buildVersion = buildVersion
+            DispatchQueue.main.async {
+                self.buildVersion = buildVersion
+            }
         }
 
         guard let bundleID = info?.bundleID else {

@@ -32,8 +32,10 @@ struct ProvisioningProfilePicker: View {
                         .padding(.leading, 3)
                 }
             }
-            Button("⟳") {
+            Button {
                 manager.reload()
+            } label: {
+                Image("arrow.clockwise")
             }
         }
         .onDrop(of: [.fileURL], isTargeted: $isTarget) { loadPath(from: $0) }

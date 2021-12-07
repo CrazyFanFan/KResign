@@ -12,11 +12,16 @@ struct AppProvisioningProfilesInfoView: View {
 
     var body: some View {
         if !appInfos.isEmpty {
-            ScrollView {
+            List {
                 ForEach(appInfos.indices, id: \.self) { index in
                     AppProvisioningProfileInfoView(app: $appInfos[index])
                 }
-            }.frame(minHeight: 150)
+            }
+            .frame(minHeight: 150, maxHeight: 450)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.secondary.opacity(0.4), lineWidth: 1)
+            )
         }
     }
 }
