@@ -23,7 +23,6 @@
 		9050F7ABADDC3FB68419BE43C7BF0E21 /* ResignTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA72330F61FFDADC36797F844EC04A /* ResignTools.swift */; };
 		A311B38272147FDBEC5075C1217DF646 /* KResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E1ADB1D2BA7348B6ED532B1412E53 /* KResignApp.swift */; };
 		A921E9AC017710140451DA3899D65632 /* ProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A9DA41FF0685D5835381672AC2161 /* ProvisioningProfile.swift */; };
-		AE4ECA97C2C53C76660BC5EB934BCE5F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B302E32D4364352A1EBCEACDE25E09 /* ActivityIndicator.swift */; };
 		BA16172032029FFE59BA848193FDA96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E09BD851B05289D0BE15C27B813B477 /* Assets.xcassets */; };
 		C254374B008A59F3B0764FA519489B28 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4961A58507A9083673C002F88FE3 /* LogView.swift */; };
 		CC33718C0E303919A68F135CB271C8C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDCCCFEAAD213636C70C30BB4595B773 /* Preview Assets.xcassets */; };
@@ -58,7 +57,6 @@
 		82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfileManager.swift; sourceTree = "<group>"; };
 		9E8E1ADB1D2BA7348B6ED532B1412E53 /* KResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KResignApp.swift; sourceTree = "<group>"; };
 		A5D5A40A2BC1BEC3D55EB3BDAE951180 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B4B302E32D4364352A1EBCEACDE25E09 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B6CA2F81FCB5D99380A81B6B8BC74E7D /* AppProvisioningProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProvisioningProfileInfo.swift; sourceTree = "<group>"; };
 		BDB61EDAABC0535BBEE2D3B722AE1E16 /* AppProvisioningProfilesInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProvisioningProfilesInfoView.swift; sourceTree = "<group>"; };
 		BDCCCFEAAD213636C70C30BB4595B773 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				80147849011D47BA6EB133D9A1F1052B /* Picker */,
-				B4B302E32D4364352A1EBCEACDE25E09 /* ActivityIndicator.swift */,
 				BDB61EDAABC0535BBEE2D3B722AE1E16 /* AppProvisioningProfilesInfoView.swift */,
 				22DB4961A58507A9083673C002F88FE3 /* LogView.swift */,
 				6A85320FC7AC9E4753C23939BC47C4A3 /* ToolView.swift */,
@@ -256,7 +253,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE4ECA97C2C53C76660BC5EB934BCE5F /* ActivityIndicator.swift in Sources */,
 				23705820D18535B6321B66EAD20E70EF /* AppProvisioningProfileInfo.swift in Sources */,
 				F6A9EDB7432EBAAADE284997075B78B7 /* AppProvisioningProfilesInfoView.swift in Sources */,
 				492DDEDE5EF037F3F37033B64C2F76BC /* Certificate.swift in Sources */,

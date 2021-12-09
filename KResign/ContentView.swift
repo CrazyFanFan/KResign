@@ -44,15 +44,15 @@ struct ContentView: View {
                 ToolView(ipaTool: ipaTool, resign: resign)
             }
 
-            Group {
-                if ipaTool.isUnzipping {
-                    ActivityIndicator(tipMessage: "Unzipping")
-                }
+            if ipaTool.isUnzipping {
+                ProgressView("Unzipping")
+                    .progressViewStyle(.circular)
+            }
 
-                if certificatesManager.isLoading {
-                    ActivityIndicator(tipMessage: "Loading")
-                }
-            }.frame(width: 100, height: 100, alignment: .center)
+            if certificatesManager.isLoading {
+                ProgressView("Loading")
+                    .progressViewStyle(.circular)
+            }
         }
         .padding()
         .frame(minWidth: 650, idealWidth: 650, alignment: .topLeading)
