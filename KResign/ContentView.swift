@@ -12,36 +12,77 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var logger: Logger = Logger.shared
     @StateObject var ipaTool = IPATools()
+    @StateObject private var certificatesManager: CertificatesManager = .shared
+
     @State private var certificate: Certificate?
+
+    @State private var status: InfoViewStatus = .display
 
     var body: some View {
         ZStack {
             VStack {
-                IPAPicker(path: $ipaTool.ipaPath)
-                ResultSavePathPicker(path: $ipaTool.savePath)
-                CertificatePicker(certificate: $certificate)
+                IPAPicker(path: $ipaTool.ipaPath, status: $status)
+                ResultSavePathPicker(path: $ipaTool.savePath, status: $status)
+                CertificatePicker(certificate: $certificate, status: $status)
+
                 AppProvisioningProfilesInfoView(appInfos: $ipaTool.appInfos)
-                VersionPicker(version: $ipaTool.shortVersion, buildVersion: $ipaTool.buildVersion)
-                ToolView(ipaTool: ipaTool, resign: {
-                    ResignTools.resign(
-                        ipa: URL(fileURLWithPath: ipaTool.ipaPath),
-                        with: certificate,
-                        newVersion: ipaTool.shortVersion,
-                        info: ipaTool.appInfos,
-                        target: ipaTool.savePath
-                    )
-                })
+                VersionPicker(
+                    version: $ipaTool.shortVersion,
+                    buildVersion: $ipaTool.buildVersion,
+                    status: $status
+                )
+
+                Divider()
+
                 LogView(append: $logger.append)
                     .frame(height: 180)
             }
-
-            if ipaTool.isUnzipping {
-                ActivityIndicator(tipMessage: "Unzipping").frame(width: 100, height: 100, alignment: .center)
+            .touchBar {
+                ToolView(ipaTool: ipaTool, resign: resign)
             }
+            .toolbar {
+                ToolView(ipaTool: ipaTool, resign: resign)
+            }
+
+            Group {
+                if ipaTool.isUnzipping {
+                    ActivityIndicator(tipMessage: "Unzipping")
+                }
+
+                if certificatesManager.isLoading {
+                    ActivityIndicator(tipMessage: "Loading")
+                }
+            }.frame(width: 100, height: 100, alignment: .center)
         }
         .padding()
         .frame(minWidth: 650, idealWidth: 650, alignment: .topLeading)
         .disabled(ipaTool.isUnzipping)
+    }
+
+    @inline(__always)
+    private func isReady() -> Bool {
+        certificate != nil && ipaTool.isReady()
+    }
+
+    private func resign() {
+        if isReady() {
+            ResignTools.resign(
+                ipa: URL(fileURLWithPath: ipaTool.ipaPath),
+                with: certificate,
+                newVersion: ipaTool.shortVersion,
+                buildVersion: ipaTool.buildVersion,
+                info: ipaTool.appInfos,
+                target: ipaTool.savePath
+            )
+        } else {
+            withAnimation(.linear(duration: 0.3).repeatCount(3)) {
+                status = .warning
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                status = .display
+            }
+        }
     }
 }
 

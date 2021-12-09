@@ -10,19 +10,27 @@ import SwiftUI
 struct VersionPicker: View {
     @Binding var version: String
     @Binding var buildVersion: String
+    @Binding var status: InfoViewStatus
 
     var body: some View {
         HStack {
             Text("Version")
             TextField("CFBundleShortVersionString", text: $version)
+                .modifier(WarningModifier(status: $status, shouldWaring: version.isEmpty))
+
             Text("Build Version")
             TextField("CFBundleVersion", text: $buildVersion)
+                .modifier(WarningModifier(status: $status, shouldWaring: buildVersion.isEmpty))
         }
     }
 }
 
 struct VersionPicker_Previews: PreviewProvider {
     static var previews: some View {
-        VersionPicker(version: .constant("5.6.7"), buildVersion: .constant("123456"))
+        VersionPicker(
+            version: .constant("5.6.7"),
+            buildVersion: .constant("123456"),
+            status: .constant(.display)
+        )
     }
 }

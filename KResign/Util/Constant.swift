@@ -48,3 +48,8 @@ enum ResignDependencyTools: String, CaseIterable {
     case codesign = "/usr/bin/codesign"
     case security = "/usr/bin/security"
 }
+
+enum InfoViewStatus {
+    case display
+    case warning
+}

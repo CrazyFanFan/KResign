@@ -16,19 +16,26 @@ class CertificatesManager: ObservableObject {
     private var cancellable: AnyCancellable?
 
     @Published var certificates: [Certificate] = []
+    @Published var isLoading: Bool = false
 
     private init() {
         reload()  // call reload to load init data.
     }
 
     func reload() {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        cancellable?.cancel()
+
         cancellable = readCertificates()
-            .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
             .sink { error in
                 print(error)
             } receiveValue: { certificates in
-                self.certificates = certificates
+                DispatchQueue.main.async {
+                    self.certificates = certificates
+                    self.isLoading = false
+                }
             }
     }
 

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct IPAPicker: View {
     @Binding var path: String
+    @Binding var status: InfoViewStatus
 
     var body: some View {
         HStack {
             TextField("Pick an ipa file.", text: $path)
+                .modifier(WarningModifier(status: $status, shouldWaring: !FileHelper.isIpa(at: path)))
             Button("Browser") {
                 picker()
             }
@@ -35,6 +37,6 @@ struct IPAPicker: View {
 
 struct IPAPicker_Previews: PreviewProvider {
     static var previews: some View {
-        IPAPicker(path: .constant(""))
+        IPAPicker(path: .constant(""), status: .constant(.display))
     }
 }

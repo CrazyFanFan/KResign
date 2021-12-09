@@ -11,6 +11,7 @@ import Combine
 struct CertificatePicker: View {
     @StateObject private var manager: CertificatesManager = .shared
     @Binding var certificate: Certificate?
+    @Binding var status: InfoViewStatus
 
     var body: some View {
         HStack {
@@ -20,7 +21,9 @@ struct CertificatePicker: View {
                         // 这里必须 as Certificate? 否则和 selection Type 不匹配
                         Text($0.name).tag($0 as Certificate?)
                     }
-                }.labelsHidden()
+                }
+                .labelsHidden()
+                .modifier(WarningModifier(status: $status, shouldWaring: certificate == nil))
 
                 if certificate == nil {
                     Text("Select a certificate")
@@ -29,8 +32,10 @@ struct CertificatePicker: View {
                 }
             }
 
-            Button("⟳") {
+            Button {
                 manager.reload()
+            } label: {
+                Image("arrow.clockwise")
             }
         }
     }
@@ -38,6 +43,6 @@ struct CertificatePicker: View {
 
 struct CertificatePicker_Previews: PreviewProvider {
     static var previews: some View {
-        CertificatePicker(certificate: .constant(nil))
+        CertificatePicker(certificate: .constant(nil), status: .constant(.display))
     }
 }

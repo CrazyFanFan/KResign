@@ -18,10 +18,14 @@ enum ResignTools {
         ipa: URL,
         with certificate: Certificate?,
         newVersion: String?,
+        buildVersion: String? = nil,
         info: [AppProvisioningProfileInfo],
         target: String
     ) {
-        guard let certificate = certificate else { return }
+        guard let certificate = certificate else {
+            Logger.error("Miss certificate", error: nil)
+            return
+        }
 
         let launchPath = ResignDependencyTools.bash.rawValue
         var argumens = [ResignDependencyTools.resign, ipa.path, certificate.sha1]
@@ -36,17 +40,26 @@ enum ResignTools {
             argumens.append(version)
         }
 
+        if let buildVersion = buildVersion {
+            argumens.append("--bundle-version")
+            argumens.append(buildVersion)
+        }
+
         argumens.append(URL(fileURLWithPath: target).appendingPathComponent(ipa.lastPathComponent).path)
 
         run(launchPath, arguments: argumens)
-            .sink { error in
-                print(error)
-                // TODO error
+            .sink { result in
+                switch result {
+                case .failure(let error):
+                    Logger.error("Resign failed with error.", error: error)
+                case .finished:
+                    break
+                }
             } receiveValue: { isSuccess in
                 if isSuccess {
-                    print("Success")
+                    Logger.info("Resign success")
                 } else {
-                    // TODO error
+                    Logger.info("Resign failed.")
                 }
             }.store(in: &set)
     }
@@ -68,19 +81,11 @@ enum ResignTools {
 
             let output = Pipe()
             task.standardOutput = output
-
-            let error = Pipe()
-            task.standardError = error
+            task.standardError = output
 
             output.fileHandleForReading.readabilityHandler = { pipe in
                 if let message = String(data: pipe.availableData, encoding: .utf8) {
                     Logger.info(message)
-                }
-            }
-
-            error.fileHandleForReading.readabilityHandler = { pipe in
-                if let message = String(data: pipe.availableData, encoding: .utf8) {
-                    Logger.error(message)
                 }
             }
 
@@ -90,7 +95,6 @@ enum ResignTools {
 
                 if task.terminationStatus == 0 {
                     publisher.send(true)
-
                 } else {
                     publisher.send(false)
                 }

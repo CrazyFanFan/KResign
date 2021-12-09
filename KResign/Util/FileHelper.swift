@@ -75,4 +75,22 @@ enum FileHelper {
         }
         return publisher.eraseToAnyPublisher()
     }
+
+    /// 路径是否存在且是文件夹
+    static func isDirectoryExists(at path: String) -> Bool {
+        var isDirectory: ObjCBool = .init(false)
+        if FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory), isDirectory.boolValue {
+            return true
+        }
+
+        return false
+    }
+
+    static func isIpa(at path: String) -> Bool {
+        var isDirectory: ObjCBool = .init(false)
+
+        return path.hasSuffix(".ipa") &&
+        FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) &&
+        !isDirectory.boolValue
+    }
 }

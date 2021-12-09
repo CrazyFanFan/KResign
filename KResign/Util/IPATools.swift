@@ -41,13 +41,42 @@ class IPATools: ObservableObject {
         try? manager.createDirectory(atPath: workPath.path, withIntermediateDirectories: true, attributes: nil)
     }
 
-    private func unzipURL(for ipaPath: URL) -> URL {
+    func isReady() -> Bool {
+        isShortVersionReady() &&
+        isBundleVersionReady() &&
+        isIpaReady() &&
+        isSavePathReady()
+    }
+
+    @inline(__always)
+    func isShortVersionReady() -> Bool {
+        !shortVersion.isEmpty
+    }
+
+    @inline(__always)
+    func isBundleVersionReady() -> Bool {
+        !buildVersion.isEmpty
+    }
+
+    @inline(__always)
+    func isIpaReady() -> Bool {
+        FileHelper.isIpa(at: ipaPath)
+    }
+
+    @inline(__always)
+    func isSavePathReady() -> Bool {
+        FileHelper.isDirectoryExists(at: savePath)
+    }
+}
+
+private extension IPATools {
+    func unzipURL(for ipaPath: URL) -> URL {
         workPath
             .appendingPathComponent(ipaPath.deletingPathExtension().lastPathComponent)
             .appendingPathComponent(Formatter.date.string(from: .init()).replacingOccurrences(of: "/", with: "-"))
     }
 
-    private func startParse() {
+    func startParse() {
         autoreleasepool { [unowned self] in
             let source = URL(fileURLWithPath: ipaPath)
             let target = unzipURL(for: source)
@@ -70,7 +99,7 @@ class IPATools: ObservableObject {
         }
     }
 
-    private func loadApp(at unzipFileURL: URL) {
+    func loadApp(at unzipFileURL: URL) {
         let payloadPath = unzipFileURL.appendingPathComponent(BundleKey.kPayloadDirName)
         let content: [String]
         do {
@@ -142,7 +171,7 @@ class IPATools: ObservableObject {
         }
     }
 
-    private func loadInfo(from appRootFileURL: URL) -> (bundleID: String?, name: String?, shortVersion: String?, buildVersion: String?)? {
+    func loadInfo(from appRootFileURL: URL) -> (bundleID: String?, name: String?, shortVersion: String?, buildVersion: String?)? {
         let infoPlistURL = appRootFileURL.appendingPathComponent(BundleKey.kInfoPlistFilename)
 
         guard manager.fileExists(atPath: infoPlistURL.path),
@@ -158,7 +187,7 @@ class IPATools: ObservableObject {
         )
     }
 
-    private func loadProvisioningProfile(from appRootFileURL: URL) -> ProvisioningProfile? {
+    func loadProvisioningProfile(from appRootFileURL: URL) -> ProvisioningProfile? {
         do {
             let provisioningURL: URL? = try manager
                 .contentsOfDirectory(atPath: appRootFileURL.path)
@@ -178,7 +207,7 @@ class IPATools: ObservableObject {
         }
     }
 
-    private func load(from appRootFileURL: URL, mainBundleID: String) -> AppProvisioningProfileInfo? {
+    func load(from appRootFileURL: URL, mainBundleID: String) -> AppProvisioningProfileInfo? {
         let info = loadInfo(from: appRootFileURL)
 
         guard let bundleID = info?.bundleID else {

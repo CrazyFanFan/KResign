@@ -16,6 +16,7 @@
 		529F2BABA17E7C65C71C2B0364E9DC33 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9335E9FF0EC2FA8A329A5EB02DAF17B /* FileHelper.swift */; };
 		5A71FFF25CE426941B3901AB88CCFDC2 /* ProvisioningProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */; };
 		62B085AAAB0D273ADA8F549BDD14A3FA /* ResultSavePathPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */; };
+		63799EB627610938006D1103 /* WarningModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63799EB527610938006D1103 /* WarningModifier.swift */; };
 		63933D4826D6A45500E29BA0 /* VersionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63933D4726D6A45500E29BA0 /* VersionPicker.swift */; };
 		7A082DD44D47CE117934AAE03E86259C /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2B88DC8DD0824A2AE4F4BA3306C29 /* Formatter.swift */; };
 		8054F88643E305BF2BB44C7A7A1A8EF7 /* CertificatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DDABA9C32EF7321823D632F2509C9 /* CertificatesManager.swift */; };
@@ -50,6 +51,7 @@
 		52FA72330F61FFDADC36797F844EC04A /* ResignTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignTools.swift; sourceTree = "<group>"; };
 		5BD2B88DC8DD0824A2AE4F4BA3306C29 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		5E02E6E8D42CDE46D71D10CB3EDC5CEE /* KResign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KResign.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63799EB527610938006D1103 /* WarningModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningModifier.swift; sourceTree = "<group>"; };
 		63933D4726D6A45500E29BA0 /* VersionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionPicker.swift; sourceTree = "<group>"; };
 		6A85320FC7AC9E4753C23939BC47C4A3 /* ToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolView.swift; sourceTree = "<group>"; };
 		758260349C00B80928D866D93D1365D0 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
@@ -122,7 +124,7 @@
 				BDB61EDAABC0535BBEE2D3B722AE1E16 /* AppProvisioningProfilesInfoView.swift */,
 				22DB4961A58507A9083673C002F88FE3 /* LogView.swift */,
 				6A85320FC7AC9E4753C23939BC47C4A3 /* ToolView.swift */,
-				63933D4726D6A45500E29BA0 /* VersionPicker.swift */,
+				63799EB527610938006D1103 /* WarningModifier.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,6 +169,7 @@
 				0767F6BEA140BA7E4EF9535C28C23764 /* IPAPicker.swift */,
 				02D9BCE33A107F245853D60E851DD965 /* ProvisioningProfilePicker.swift */,
 				C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */,
+				63933D4726D6A45500E29BA0 /* VersionPicker.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				5A71FFF25CE426941B3901AB88CCFDC2 /* ProvisioningProfileManager.swift in Sources */,
 				F43F6230C9EE8DBE1B90859247F96EB6 /* ProvisioningProfilePicker.swift in Sources */,
 				9050F7ABADDC3FB68419BE43C7BF0E21 /* ResignTools.swift in Sources */,
+				63799EB627610938006D1103 /* WarningModifier.swift in Sources */,
 				62B085AAAB0D273ADA8F549BDD14A3FA /* ResultSavePathPicker.swift in Sources */,
 				DEF05747C72F9684E701FC360CB21046 /* ToolView.swift in Sources */,
 			);
@@ -445,6 +449,7 @@
 				DEVELOPMENT_TEAM = HV88ACAAR6;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = KResign/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -39,23 +39,58 @@ class Logger: ObservableObject {
 
     private init() {
     }
+
+    func append(other: NSAttributedString?) {
+        guard let other = other else { return }
+
+        if let old = self.append?.mutableCopy() as? NSMutableAttributedString {
+            old.append(other)
+            append = old
+        } else {
+            self.append = other
+        }
+    }
+}
+
+fileprivate extension String {
+    func trimming() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension Logger {
+    private static var isLastIsEmpty: Bool = true
+
     private static func time() -> NSMutableAttributedString {
         "[\(Formatter.date.string(from: .init()))] ".purple
     }
 
+    static func preprocessor(_ message: String) -> String? {
+        let message = message.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if !message.isEmpty {
+            isLastIsEmpty = false
+            return message
+        }
+
+        // 跳过连续的空白行
+        if isLastIsEmpty {
+            return nil
+        }
+
+        return "..."
+    }
+
     static func info(_ message: String) {
-        log(message.white)
+        log(preprocessor(message)?.white)
     }
 
     static func warning(_ message: String) {
-        log(message.yellow)
+        log(preprocessor(message)?.yellow)
     }
 
     static func error(_ message: String, error: Error? = nil) {
-        log(message.read, error?.localizedDescription.read)
+        log(preprocessor(message)?.read, error?.localizedDescription.read)
     }
 
     private static func log(_ messages: NSAttributedString?...) {
@@ -70,7 +105,7 @@ extension Logger {
         tmp.append("\n".white)
 
         DispatchQueue.main.async {
-            Logger.shared.append = tmp
+            Logger.shared.append(other: tmp)
         }
     }
 }
