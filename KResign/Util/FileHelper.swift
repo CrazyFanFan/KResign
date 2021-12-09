@@ -76,8 +76,8 @@ enum FileHelper {
         return publisher.eraseToAnyPublisher()
     }
 
-    /// 路径是否存在且是文件夹
-    static func isDirectoryExists(at path: String) -> Bool {
+    /// 路径是否存是文件夹，不存在也返回 false
+    static func isDirectory(at path: String) -> Bool {
         var isDirectory: ObjCBool = .init(false)
         if FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory), isDirectory.boolValue {
             return true

@@ -23,7 +23,7 @@ struct CertificatePicker: View {
                     }
                 }
                 .labelsHidden()
-                .modifier(WarningModifier(status: $status, shouldWaring: certificate == nil))
+                .modifier(WarningModifier($status, condition: certificate == nil))
 
                 if certificate == nil {
                     Text("Select a certificate")

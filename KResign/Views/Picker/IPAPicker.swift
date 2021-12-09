@@ -14,7 +14,7 @@ struct IPAPicker: View {
     var body: some View {
         HStack {
             TextField("Pick an ipa file.", text: $path)
-                .modifier(WarningModifier(status: $status, shouldWaring: !FileHelper.isIpa(at: path)))
+                .modifier(WarningModifier($status, condition: !FileHelper.isIpa(at: path)))
             Button("Browser") {
                 picker()
             }

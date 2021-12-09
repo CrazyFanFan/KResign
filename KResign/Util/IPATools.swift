@@ -65,7 +65,7 @@ class IPATools: ObservableObject {
 
     @inline(__always)
     func isSavePathReady() -> Bool {
-        FileHelper.isDirectoryExists(at: savePath)
+        FileHelper.isDirectory(at: savePath)
     }
 }
 

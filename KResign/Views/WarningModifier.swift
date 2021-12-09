@@ -11,9 +11,9 @@ struct WarningModifier: ViewModifier {
     @Binding var status: InfoViewStatus
     var shouldWaring: () -> Bool
 
-    init(status: Binding<InfoViewStatus>, shouldWaring: @autoclosure @escaping () -> Bool) {
+    init(_ status: Binding<InfoViewStatus>, condition: @autoclosure @escaping () -> Bool) {
         self._status = status
-        self.shouldWaring = shouldWaring
+        self.shouldWaring = condition
     }
 
     func body(content: Content) -> some View {

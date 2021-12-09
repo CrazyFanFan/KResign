@@ -14,7 +14,7 @@ struct ResultSavePathPicker: View {
     var body: some View {
         HStack {
             TextField("Pick a directory to save resigned ipa.", text: $path)
-                .modifier(WarningModifier(status: $status, shouldWaring: !FileHelper.isDirectoryExists(at: path)))
+                .modifier(WarningModifier($status, condition: !FileHelper.isDirectory(at: path)))
             Button("Browser") {
                 picker()
             }
