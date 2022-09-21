@@ -23,7 +23,7 @@ enum ResignTools {
         target: String
     ) {
         Logger.info("Start resign")
-        
+
         guard let certificate = certificate else {
             Logger.error("Miss certificate", error: nil)
             return
