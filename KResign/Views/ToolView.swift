@@ -22,10 +22,6 @@ struct ToolView: View {
                 NSWorkspace.shared.open(ipaTool.workPath.deletingLastPathComponent())
             }
 
-            Button("Reset") {
-
-            }
-
             Button("Start", action: resign ?? {})
         }
         .sheet(isPresented: $isPresented) {
