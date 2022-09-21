@@ -86,6 +86,8 @@ private extension IPATools {
 
             try? manager.removeItem(at: workPath)
 
+            Logger.info("Unzipping...")
+
             FileHelper.unzip(fileAt: source, to: target)
                 .sink { error in
                     print(error)

@@ -22,6 +22,8 @@ enum ResignTools {
         info: [AppProvisioningProfileInfo],
         target: String
     ) {
+        Logger.info("Start resign")
+        
         guard let certificate = certificate else {
             Logger.error("Miss certificate", error: nil)
             return

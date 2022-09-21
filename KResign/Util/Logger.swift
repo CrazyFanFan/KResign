@@ -62,7 +62,7 @@ extension Logger {
     private static var isLastIsEmpty: Bool = true
 
     private static func time() -> NSMutableAttributedString {
-        "[\(Formatter.date.string(from: .init()))] ".purple
+        "[\(Formatter.date.string(from: .init()))]  ".purple
     }
 
     static func preprocessor(_ message: String) -> String? {
@@ -78,6 +78,7 @@ extension Logger {
             return nil
         }
 
+        isLastIsEmpty = true
         return "..."
     }
 
@@ -94,6 +95,8 @@ extension Logger {
     }
 
     private static func log(_ messages: NSAttributedString?...) {
+        if messages.allSatisfy({ $0 == .none  }) { return }
+
         let tmp = time()
 
         for message in messages {
