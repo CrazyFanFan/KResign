@@ -15,7 +15,8 @@
 "Open cache" = "缓存目录";
 "Start" = "开始";
 "Reset" = "重置";
-"Unzipping" = "解压中…";
+"Unzipping" = "解压中...";
+"Loading" = "加载中...";
 "Old: " = "旧: ";
 "New: " = "新: ";
 "Version" = "版本号";

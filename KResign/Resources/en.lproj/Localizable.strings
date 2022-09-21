@@ -17,6 +17,7 @@
 "Start" = "Start";
 "Reset" = "Reset";
 "Unzipping" = "Unzipping...";
+"Loading" = "Loading...";
 "Old: " = "Old: ";
 "New: " = "New: ";
 "Version" = "Version";
