@@ -31,7 +31,7 @@ class IPATools: ObservableObject {
         .appendingPathComponent("kResign")
         .appendingPathComponent("unzip")
     private var mainAppFileURL: URL?
-    private var extensionsFileURLs: [URL]?
+    private var extensionsFileURLs: [URL] = []
 
     init() {
         savePath = URL(fileURLWithPath: NSHomeDirectory())
@@ -122,22 +122,15 @@ private extension IPATools {
 
         self.mainAppFileURL = mainAppFileURL
 
-        let pluginsPath = mainAppFileURL.appendingPathComponent(BundleKey.kPlugIns)
+        let enumerator = manager.enumerator(atPath: mainAppFileURL.path)
+        while let next = enumerator?.nextObject() {
+            guard let name = next as? String,
+                  name.description.hasSuffix(".app") || name.description.hasSuffix(".appex") else { continue }
 
-        if manager.fileExists(atPath: pluginsPath.path) {
-            let appx: [String]
-            do {
-                appx = try manager.contentsOfDirectory(atPath: pluginsPath.path)
-            } catch {
-                appx = []
-                Logger.error("Get appx path failed.", error: error)
-            }
-
-            let extensionsAppFileURLs = appx.map { pluginsPath.appendingPathComponent($0) }
-            self.extensionsFileURLs = extensionsAppFileURLs
-
-            allAppInfo += extensionsAppFileURLs
+            let fullURL = mainAppFileURL.appendingPathComponent(name)
+            self.extensionsFileURLs.append(fullURL)
         }
+        allAppInfo += extensionsFileURLs
 
         let info = loadInfo(from: mainAppFileURL)
         if let shortVersion = info?.shortVersion {
