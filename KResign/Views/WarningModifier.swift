@@ -17,14 +17,10 @@ struct WarningModifier: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        if status == .warning, shouldWaring() {
-            content
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.red, lineWidth: 3)
-                )
-        } else {
-            content
-        }
+        content
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(status == .warning && shouldWaring() ? Color.red : Color.clear, lineWidth: 3)
+            )
     }
 }

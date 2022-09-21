@@ -21,18 +21,28 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             VStack {
-                IPAPicker(path: $ipaTool.ipaPath, status: $status)
-                ResultSavePathPicker(path: $ipaTool.savePath, status: $status)
-                CertificatePicker(certificate: $certificate, status: $status)
+                Group {
+                    IPAPicker(path: $ipaTool.ipaPath, status: $status)
+                    Divider()
 
-                AppProvisioningProfilesInfoView(appInfos: $ipaTool.appInfos)
-                VersionPicker(
-                    version: $ipaTool.shortVersion,
-                    buildVersion: $ipaTool.buildVersion,
-                    status: $status
-                )
+                    ResultSavePathPicker(path: $ipaTool.savePath, status: $status)
+                    Divider()
 
-                Divider()
+                    CertificatePicker(certificate: $certificate, status: $status)
+                    Divider()
+
+                    VersionPicker(
+                        version: $ipaTool.shortVersion,
+                        buildVersion: $ipaTool.buildVersion,
+                        status: $status
+                    )
+                    Divider()
+
+                    AppProvisioningProfilesGroupView(
+                        appInfos: $ipaTool.appInfos
+                    )
+
+                }
 
                 LogView(append: $logger.append)
                     .frame(height: 180)
@@ -44,18 +54,13 @@ struct ContentView: View {
                 ToolView(ipaTool: ipaTool, resign: resign)
             }
 
-            if ipaTool.isUnzipping {
-                ProgressView("Unzipping")
-                    .progressViewStyle(.circular)
-            }
-
-            if certificatesManager.isLoading {
-                ProgressView("Loading")
+            if ipaTool.isUnzipping || certificatesManager.isLoading{
+                ProgressView(ipaTool.isUnzipping ? "Unzipping" : "Loading")
                     .progressViewStyle(.circular)
             }
         }
         .padding()
-        .frame(minWidth: 650, idealWidth: 650, alignment: .topLeading)
+        .frame(minWidth: 650, maxWidth: 900, alignment: .topLeading)
         .disabled(ipaTool.isUnzipping)
     }
 

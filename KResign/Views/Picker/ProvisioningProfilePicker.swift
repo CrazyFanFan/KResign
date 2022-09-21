@@ -8,43 +8,43 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
+extension Text {
+    func `default`() -> Text {
+        Text("DefaultIcon").foregroundColor(.blue) + self
+    }
+
+    func current() -> Text {
+        Text("DefaultIcon").foregroundColor(.green) + self
+    }
+}
+
 struct ProvisioningProfilePicker: View {
-    var defaultProvisioningProfile: ProvisioningProfile?
-    @Binding var provisioningProfile: ProvisioningProfile?
-    @State private var manager = ProvisioningProfileManager.shared
+    var `default`: ProvisioningProfile
+    @Binding var selection: ProvisioningProfile
+    @StateObject private var manager = ProvisioningProfileManager.shared
     @State private var isTarget = false
 
     var body: some View {
-        HStack {
-            ZStack(alignment: .leading) {
-                Picker("", selection: $provisioningProfile) {
-                    ForEach(manager.provisioningProfiles, id: \.self) {
-                        // 这里必须 as ProvisioningProfile? 否则和 selection Type 不匹配
-                        (append(for: $0) + Text("\($0.name) (\($0.bundleIdentifierWithoutTeamID))"))
-                            .tag($0 as ProvisioningProfile?)
-                    }
-                }
-                .labelsHidden()
-
-                if provisioningProfile == nil {
-                    Text("Select a provisioning profile")
-                        .foregroundColor(.secondary.opacity(0.75))
-                        .padding(.leading, 3)
-                }
-            }
-            Button {
-                manager.reload()
-            } label: {
-                Image("arrow.clockwise")
+        Picker("", selection: $selection) {
+            ForEach(manager.provisioningProfiles, id: \.self) { profile in
+                display(for: profile).tag(profile)
             }
         }
+        .labelsHidden()
         .onDrop(of: [.fileURL], isTargeted: $isTarget) { loadPath(from: $0) }
     }
 
-    private func append(for provisioningProfile: ProvisioningProfile?) -> Text {
-        (provisioningProfile == defaultProvisioningProfile ?
-            Text("Default").bold().font(.footnote).foregroundColor(.green.opacity(0.75)):
-            Text(""))
+    private func display(for profile: ProvisioningProfile) -> Text {
+        switch (profile, profile) {
+        case (self.default, self.selection):
+            return Text(profile.pickerDisplay).current().default()
+        case (self.default, _):
+            return Text(profile.pickerDisplay).default()
+        case (self.selection, _):
+            return Text(profile.pickerDisplay).current()
+        default:
+            return Text(profile.pickerDisplay)
+        }
     }
 
     private func loadPath(from providers: [NSItemProvider]) -> Bool {
@@ -74,7 +74,7 @@ struct ProvisioningProfilePicker: View {
 
             DispatchQueue.main.async {
                 self.manager.append(provisioningProfile: provisioningProfile)
-                self.provisioningProfile = provisioningProfile
+                self.selection = provisioningProfile
             }
         }
 
@@ -82,8 +82,8 @@ struct ProvisioningProfilePicker: View {
     }
 }
 
-struct ProvisioningProfilePicker_Previews: PreviewProvider {
-    static var previews: some View {
-        ProvisioningProfilePicker(provisioningProfile: .constant(nil))
-    }
-}
+// struct ProvisioningProfilePicker_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProvisioningProfilePicker(default: <#T##ProvisioningProfile#>, selection: <#T##Binding<ProvisioningProfile>#>)
+//    }
+// }

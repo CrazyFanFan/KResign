@@ -13,14 +13,18 @@ struct VersionPicker: View {
     @Binding var status: InfoViewStatus
 
     var body: some View {
-        HStack {
-            Text("Version")
-            TextField("CFBundleShortVersionString", text: $version)
-                .modifier(WarningModifier($status, condition: version.isEmpty))
+        VStack {
+            HStack {
+                Text("Version")
+                TextField("CFBundleShortVersionString", text: $version)
+                    .modifier(WarningModifier($status, condition: version.isEmpty))
+            }
 
-            Text("Build Version")
-            TextField("CFBundleVersion", text: $buildVersion)
-                .modifier(WarningModifier($status, condition: buildVersion.isEmpty))
+            HStack {
+                Text("Build")
+                TextField("CFBundleVersion", text: $buildVersion)
+                    .modifier(WarningModifier($status, condition: buildVersion.isEmpty))
+            }
         }
     }
 }

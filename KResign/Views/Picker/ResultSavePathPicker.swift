@@ -13,9 +13,10 @@ struct ResultSavePathPicker: View {
 
     var body: some View {
         HStack {
-            TextField("Pick a directory to save resigned ipa.", text: $path)
+            Text(LocalizedStringKey(path.isEmpty ? "Pick a directory to save resigned ipa." : path))
                 .modifier(WarningModifier($status, condition: !FileHelper.isDirectory(at: path)))
-            Button("Browser") {
+            Spacer()
+            Button("Save To") {
                 picker()
             }
         }

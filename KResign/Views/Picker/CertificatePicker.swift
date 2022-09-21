@@ -17,19 +17,21 @@ struct CertificatePicker: View {
         HStack {
             ZStack(alignment: .leading) {
                 Picker("", selection: $certificate) {
-                    ForEach(manager.certificates, id: \.self) {
+                    ForEach(manager.certificates, id: \.self) { cert in
                         // 这里必须 as Certificate? 否则和 selection Type 不匹配
-                        Text($0.name).tag($0 as Certificate?)
+                        if let cert = cert {
+                            Text(cert.name)
+                                .tag(cert)
+                        }
                     }
                 }
                 .labelsHidden()
                 .modifier(WarningModifier($status, condition: certificate == nil))
 
-                if certificate == nil {
-                    Text("Select a certificate")
-                        .foregroundColor(.secondary.opacity(0.75))
-                        .padding(.leading, 3)
-                }
+                Text("Select a certificate")
+                    .foregroundColor(.secondary.opacity(0.75))
+                    .padding(.leading, 3)
+                    .opacity(certificate == nil ? 1 : 0)
             }
 
             Button {

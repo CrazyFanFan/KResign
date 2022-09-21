@@ -8,6 +8,7 @@
 
 "Pick an ipa file." = "请选取一个ipa文件";
 "Browser" = "浏览";
+"Save To" = "保存到";
 "Select a certificate" = "请选择一个证书";
 "Select a provisioninp profile" = "请选择一个描述文件";
 "Pick a directory to save resigned ipa." = "选择一个目录存储重签后的文件。";
@@ -17,4 +18,13 @@
 "Unzipping" = "解压中…";
 "Old: " = "旧: ";
 "New: " = "新: ";
-"Default" = "● "; // any new icon to means default?
+"Version" = "版本号";
+"Build" = "构建号";
+
+"DefaultIcon" = "○ "; // any new icon to means default?
+"CurrentIcon" = "● "; // any new icon to means current?
+"Default" = "默认值";
+"Current" = "当前值";
+"Total: %lld" = "共有: %lld";
+"Close" = "关闭";
+"Profile" = "描述文件";

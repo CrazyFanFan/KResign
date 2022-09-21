@@ -15,7 +15,7 @@ class CertificatesManager: ObservableObject {
     private var manager: FileManager { .default }
     private var cancellable: AnyCancellable?
 
-    @Published var certificates: [Certificate] = []
+    @Published var certificates: [Certificate?] = []
     @Published var isLoading: Bool = false
 
     private init() {
@@ -39,7 +39,7 @@ class CertificatesManager: ObservableObject {
             }
     }
 
-    private func readCertificates() -> AnyPublisher<[Certificate], Error> {
+    private func readCertificates() -> AnyPublisher<[Certificate?], Error> {
         let task = Process()
         task.launchPath = ResignDependencyTools.security.rawValue
         task.arguments = ["find-identity", "-v", "-p", "codesigning"]
@@ -51,7 +51,7 @@ class CertificatesManager: ObservableObject {
         let handle = pipe.fileHandleForReading
         task.launch()
 
-        let publisher = PassthroughSubject<[Certificate], Error>()
+        let publisher = PassthroughSubject<[Certificate?], Error>()
         Logger.info("Start: read certificates")
 
         DispatchQueue.global().async {

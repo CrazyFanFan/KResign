@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProvisioningProfile: Hashable {
+struct ProvisioningProfile {
     private(set) var name: String
     private(set) var teamName: String
     private(set) var isValid: Bool
@@ -26,6 +26,8 @@ struct ProvisioningProfile: Hashable {
     private(set) var appIdName: String
     private(set) var teamIdentifier: String
     private(set) var path: URL
+
+    private(set) var pickerDisplay: String
 
     init?(with fileURL: URL) {
         var decoder: CMSDecoder?
@@ -94,7 +96,15 @@ struct ProvisioningProfile: Hashable {
         self.bundleIdentifierWithoutTeamID = self.bundleIdentifier
             .replacingOccurrences(of: teamIdentifier + ".", with: "")
 
+        pickerDisplay = name + " (" + bundleIdentifierWithoutTeamID + ")"
+
         decoder = nil
         dataRef = nil
+    }
+}
+
+extension ProvisioningProfile: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(path)
     }
 }

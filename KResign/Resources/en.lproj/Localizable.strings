@@ -8,6 +8,8 @@
 
 "Pick an ipa file." = "Pick an ipa file.";
 "Browser" = "Browser";
+"Save To" = "Save To";
+
 "Select a certificate" = "Select a certificate";
 "Select a provisioninp profile" = "Select a provisioninp profile";
 "Pick a directory to save resigned ipa." = "Pick a directory to save resigned ipa.";
@@ -17,4 +19,13 @@
 "Unzipping" = "Unzipping...";
 "Old: " = "Old: ";
 "New: " = "New: ";
-"Default" = "● "; // any new icon to means default?
+"Version" = "Version";
+"Build" = "Build";
+
+"DefaultIcon" = "○ "; // any new icon to means default?
+"CurrentIcon" = "● "; // any new icon to means current?
+"Default" = "Default";
+"Current" = "Current";
+"Total: %lld" = "Total: %lld";
+"Close" = "Close";
+"Profile" = "Profile";

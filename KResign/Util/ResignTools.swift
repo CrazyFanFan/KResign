@@ -32,7 +32,7 @@ enum ResignTools {
 
         info.forEach {
             argumens.append("-p")
-            argumens.append("\($0.bundleID)=\(($0.newProvisioning ?? $0.provisioning).path.path)")
+            argumens.append("\($0.bundleID)=\($0.newProvisioning.path.path)")
         }
 
         if let version = newVersion {

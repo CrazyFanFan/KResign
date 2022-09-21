@@ -18,8 +18,6 @@ struct ToolView: View {
 
     var body: some View {
         HStack {
-            Spacer()
-
             Button("Open cache") {
                 NSWorkspace.shared.open(ipaTool.workPath.deletingLastPathComponent())
             }
@@ -29,26 +27,12 @@ struct ToolView: View {
             }
 
             Button("Start", action: resign ?? {})
-
-            if !ipaTool.appInfos.isEmpty {
-                Button("Show") {
-                    isPresented.toggle()
-                }
-            }
-        }.sheet(isPresented: $isPresented) {
+        }
+        .sheet(isPresented: $isPresented) {
 
         } content: {
-            AppProvisioningProfilesInfoView(appInfos: $ipaTool.appInfos)
-                .frame(minWidth: 450)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Close") {
-                            isPresented.toggle()
-                        }
-                    }
-                }
-        }
 
+        }
     }
 }
 

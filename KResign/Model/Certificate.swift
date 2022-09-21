@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct Certificate: Hashable {
-    private static let pattern = #"(\d+)\)\s([0-9A-Z]+)\s\"(.*)\"(.*)?"#
-    private static let regular: NSRegularExpression? = try? NSRegularExpression(pattern: pattern, options: [])
+let pattern = #"(\d+)\)\s([0-9A-Z]+)\s\"(.*)\"(.*)?"#
+let regular: NSRegularExpression? = try? NSRegularExpression(pattern: pattern, options: [])
 
+struct Certificate: Hashable {
     var index: Int
     var sha1: String
     var name: String
     var append: String?
 
     init?(string: String) {
-        precondition(Self.regular != nil, "Certificate.regular should not be nil.")
+        precondition(regular != nil, "Certificate.regular should not be nil.")
 
-        guard let regular = Self.regular else {
+        guard let regular = regular else {
             NSLog("Certificate.regular init failed.")
             return nil
         }

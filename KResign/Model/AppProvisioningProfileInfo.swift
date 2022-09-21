@@ -15,7 +15,7 @@ struct AppProvisioningProfileInfo: Hashable {
     var mainBundleID: String
     var provisioning: ProvisioningProfile
 
-    var newProvisioning: ProvisioningProfile?
+    var newProvisioning: ProvisioningProfile
 
     var display: String
 
