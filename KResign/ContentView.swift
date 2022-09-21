@@ -54,7 +54,7 @@ struct ContentView: View {
                 ToolView(ipaTool: ipaTool, resign: resign)
             }
 
-            if ipaTool.isUnzipping || certificatesManager.isLoading{
+            if ipaTool.isUnzipping || certificatesManager.isLoading {
                 ProgressView(ipaTool.isUnzipping ? "Unzipping" : "Loading")
                     .progressViewStyle(.circular)
             }

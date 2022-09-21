@@ -52,7 +52,7 @@ struct AppProvisioningProfilesGroupView: View {
                             } label: {
                                 Image("arrow.clockwise")
                             }
-                            
+
                         }
                     }
                 }
