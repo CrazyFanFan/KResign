@@ -24,7 +24,9 @@ struct AppProvisioningProfilesGroupView: View {
                 } label: {
                     HStack {
                         Text("Profile")
-                        Image("arrowtriangle.forward.fill").rotationEffect(.degrees(isDetailShow ? 90 : 0))
+                        Image("arrowtriangle.forward.fill")
+                            .foregroundColor(appInfos.isEmpty ? .secondary : .green.opacity(0.7))
+                            .rotationEffect(.degrees(isDetailShow ? 90 : 0))
                     }
                 }
                 .disabled(appInfos.isEmpty)
