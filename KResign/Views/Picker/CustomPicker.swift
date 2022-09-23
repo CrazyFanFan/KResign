@@ -27,6 +27,7 @@ extension Text {
     }
 }
 
+/// Picker provided by SwiftUI can cause stalling.
 struct CustomPicker<Item, Content>: View where Item: Hashable, Content: View {
     var `default`: Item?
     @Binding var selection: Item
@@ -103,8 +104,20 @@ private extension CustomPicker {
 
 struct CPicker_Previews: PreviewProvider {
     static var previews: some View {
-        CustomPicker(default: 0, selection: .constant(2), items: Array(0...10)) {
-            Text("\($0)")
+        VStack {
+            CustomPicker(default: 0, selection: .constant(0), items: Array(0...10)) {
+                Text("\($0)")
+            }
+            CustomPicker(default: 0, selection: .constant(1), items: Array(0...10)) {
+                Text("\($0)")
+            }
+
+            CustomPicker(selection: .constant(0), items: Array(0...10)) {
+                Text("\($0)")
+            }
+            CustomPicker(selection: .constant(1), items: Array(0...10)) {
+                Text("\($0)")
+            }
         }
     }
 }
