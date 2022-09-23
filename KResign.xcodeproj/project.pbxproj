@@ -19,6 +19,7 @@
 		5A71FFF25CE426941B3901AB88CCFDC2 /* ProvisioningProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */; };
 		62B085AAAB0D273ADA8F549BDD14A3FA /* ResultSavePathPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */; };
 		63CD1FB87225CA84AC6DB514816CF522 /* AppProvisioningProfilesGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9726589AC7167E92472B4BFA23D0B2 /* AppProvisioningProfilesGroupView.swift */; };
+		741278856203812C4D2207EE28C1509E /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */; };
 		7A082DD44D47CE117934AAE03E86259C /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2B88DC8DD0824A2AE4F4BA3306C29 /* Formatter.swift */; };
 		8054F88643E305BF2BB44C7A7A1A8EF7 /* CertificatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DDABA9C32EF7321823D632F2509C9 /* CertificatesManager.swift */; };
 		9050F7ABADDC3FB68419BE43C7BF0E21 /* ResignTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA72330F61FFDADC36797F844EC04A /* ResignTools.swift */; };
@@ -54,6 +55,7 @@
 		6A85320FC7AC9E4753C23939BC47C4A3 /* ToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolView.swift; sourceTree = "<group>"; };
 		6A9726589AC7167E92472B4BFA23D0B2 /* AppProvisioningProfilesGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProvisioningProfilesGroupView.swift; sourceTree = "<group>"; };
 		758260349C00B80928D866D93D1365D0 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
+		79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfileManager.swift; sourceTree = "<group>"; };
 		9E8E1ADB1D2BA7348B6ED532B1412E53 /* KResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KResignApp.swift; sourceTree = "<group>"; };
 		A5D5A40A2BC1BEC3D55EB3BDAE951180 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -162,9 +164,10 @@
 		80147849011D47BA6EB133D9A1F1052B /* Picker */ = {
 			isa = PBXGroup;
 			children = (
-				02D9BCE33A107F245853D60E851DD965 /* ProvisioningProfilePicker.swift */,
+				79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */,
 				E73A6F214D61E9C2D37ED3012220600B /* CertificatePicker.swift */,
 				0767F6BEA140BA7E4EF9535C28C23764 /* IPAPicker.swift */,
+				02D9BCE33A107F245853D60E851DD965 /* ProvisioningProfilePicker.swift */,
 				C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */,
 				CA95FEC2EA3BC8A39DB72794FA85ED30 /* VersionPicker.swift */,
 			);
@@ -255,6 +258,7 @@
 			files = (
 				23705820D18535B6321B66EAD20E70EF /* AppProvisioningProfileInfo.swift in Sources */,
 				63CD1FB87225CA84AC6DB514816CF522 /* AppProvisioningProfilesGroupView.swift in Sources */,
+				741278856203812C4D2207EE28C1509E /* CustomPicker.swift in Sources */,
 				492DDEDE5EF037F3F37033B64C2F76BC /* Certificate.swift in Sources */,
 				2CF162F9785F8FA7D943A7FA1C58A7E4 /* CertificatePicker.swift in Sources */,
 				8054F88643E305BF2BB44C7A7A1A8EF7 /* CertificatesManager.swift in Sources */,

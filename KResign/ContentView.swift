@@ -41,7 +41,6 @@ struct ContentView: View {
                     AppProvisioningProfilesGroupView(
                         appInfos: $ipaTool.appInfos
                     )
-
                 }
 
                 LogView(append: $logger.append)

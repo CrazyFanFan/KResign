@@ -10,56 +10,39 @@ import SwiftUI
 struct AppProvisioningProfilesGroupView: View {
     @Binding var appInfos: [AppProvisioningProfileInfo]
     private var manager: ProvisioningProfileManager = .shared
-    @State private var isDetailShow = false
 
     init(appInfos: Binding<[AppProvisioningProfileInfo]>) {
         self._appInfos = appInfos
     }
 
     var body: some View {
-        Group {
-            HStack {
-                Button {
-                    isDetailShow.toggle()
-                } label: {
+        if !appInfos.isEmpty {
+            List {
+                Section {
+                    ForEach(appInfos.indices, id: \.self) { index in
+                        AppProvisioningProfileView(index: index, app: $appInfos[index])
+                    }
+                } header: {
                     HStack {
-                        Text("Profile")
-                        Image("arrowtriangle.forward.fill")
-                            .foregroundColor(appInfos.isEmpty ? .secondary : .green.opacity(0.7))
-                            .rotationEffect(.degrees(isDetailShow ? 90 : 0))
-                    }
-                }
-                .disabled(appInfos.isEmpty)
-                .buttonStyle(.borderless)
+                        Text("Default")
+                        Text.default()
+                        Divider()
 
-                Spacer()
-            }
+                        Text("Current")
+                        Text.current()
+                        Divider()
 
-            if isDetailShow, !appInfos.isEmpty {
-                List {
-                    Section {
-                        ForEach(appInfos.indices, id: \.self) { index in
-                            AppProvisioningProfileView(index: index, app: $appInfos[index])
-                        }
-                    } header: {
-                        HStack {
-                            Text("Default").default()
-                            Divider()
-                            Text("Current").current()
-                            Divider()
-                            Text("Total: \(appInfos.count)")
-                            Spacer()
-                            Button {
-                                manager.reload()
-                            } label: {
-                                Image("arrow.clockwise")
-                            }
-
+                        Text("Total: \(appInfos.count)")
+                        Spacer()
+                        Button {
+                            manager.reload()
+                        } label: {
+                            Image("arrow.clockwise")
                         }
                     }
                 }
-                .frame(minHeight: 150)
             }
+            .frame(minHeight: 150)
         }
     }
 }
