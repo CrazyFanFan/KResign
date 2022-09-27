@@ -18,6 +18,7 @@
 		5883906277035F2EF47811267118C7DF /* VersionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA95FEC2EA3BC8A39DB72794FA85ED30 /* VersionPicker.swift */; };
 		5A71FFF25CE426941B3901AB88CCFDC2 /* ProvisioningProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */; };
 		62B085AAAB0D273ADA8F549BDD14A3FA /* ResultSavePathPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */; };
+		6373AFA928E413AF009D192C /* MobileProvision in Frameworks */ = {isa = PBXBuildFile; productRef = 63ECDD0928DB762B00597FC7 /* MobileProvision */; };
 		63CD1FB87225CA84AC6DB514816CF522 /* AppProvisioningProfilesGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9726589AC7167E92472B4BFA23D0B2 /* AppProvisioningProfilesGroupView.swift */; };
 		741278856203812C4D2207EE28C1509E /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */; };
 		7A082DD44D47CE117934AAE03E86259C /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2B88DC8DD0824A2AE4F4BA3306C29 /* Formatter.swift */; };
@@ -77,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6373AFA928E413AF009D192C /* MobileProvision in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +202,9 @@
 			dependencies = (
 			);
 			name = KResign;
+			packageProductDependencies = (
+				63ECDD0928DB762B00597FC7 /* MobileProvision */,
+			);
 			productName = KResign;
 			productReference = 5E02E6E8D42CDE46D71D10CB3EDC5CEE /* KResign.app */;
 			productType = "com.apple.product-type.application";
@@ -228,6 +233,9 @@
 				"zh-Hans",
 			);
 			mainGroup = 32FD8391CBB8A20E5151DD88CC024B2B;
+			packageReferences = (
+				63ECDD0828DB762B00597FC7 /* XCRemoteSwiftPackageReference "MobileProvision" */,
+			);
 			productRefGroup = 7752019ADDB3E90423174040D0A13D39 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -494,6 +502,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63ECDD0828DB762B00597FC7 /* XCRemoteSwiftPackageReference "MobileProvision" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:CrazyFanFan/MobileProvision.git";
+			requirement = {
+				branch = release/1.0;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63ECDD0928DB762B00597FC7 /* MobileProvision */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63ECDD0828DB762B00597FC7 /* XCRemoteSwiftPackageReference "MobileProvision" */;
+			productName = MobileProvision;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8FCBA4373B1007ECB856CFDD04298BC7 /* Project object */;
 }
