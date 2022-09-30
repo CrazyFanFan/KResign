@@ -43,6 +43,8 @@ struct ContentView: View {
                     )
                 }
 
+                Spacer()
+
                 LogView(append: $logger.append)
                     .frame(height: 180)
             }
@@ -59,7 +61,7 @@ struct ContentView: View {
             }
         }
         .padding()
-        .frame(minWidth: 650, maxWidth: 900, alignment: .topLeading)
+        .frame(minWidth: 650, alignment: .topLeading)
         .disabled(ipaTool.isUnzipping)
     }
 
