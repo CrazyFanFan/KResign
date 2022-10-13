@@ -17,17 +17,19 @@
 		529F2BABA17E7C65C71C2B0364E9DC33 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9335E9FF0EC2FA8A329A5EB02DAF17B /* FileHelper.swift */; };
 		5883906277035F2EF47811267118C7DF /* VersionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA95FEC2EA3BC8A39DB72794FA85ED30 /* VersionPicker.swift */; };
 		5A71FFF25CE426941B3901AB88CCFDC2 /* ProvisioningProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */; };
+		5FE56111E73171E1BDF3CC2FFBD59E91 /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = EADA5103BA91D9C382C5746383BDE07D /* README.MD */; };
 		62B085AAAB0D273ADA8F549BDD14A3FA /* ResultSavePathPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */; };
-		6373AFA928E413AF009D192C /* MobileProvision in Frameworks */ = {isa = PBXBuildFile; productRef = 63ECDD0928DB762B00597FC7 /* MobileProvision */; };
+		6337203128F855410038C416 /* MobileProvision in Frameworks */ = {isa = PBXBuildFile; productRef = 6337203028F855410038C416 /* MobileProvision */; };
 		63CD1FB87225CA84AC6DB514816CF522 /* AppProvisioningProfilesGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9726589AC7167E92472B4BFA23D0B2 /* AppProvisioningProfilesGroupView.swift */; };
-		741278856203812C4D2207EE28C1509E /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */; };
 		7A082DD44D47CE117934AAE03E86259C /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD2B88DC8DD0824A2AE4F4BA3306C29 /* Formatter.swift */; };
 		8054F88643E305BF2BB44C7A7A1A8EF7 /* CertificatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DDABA9C32EF7321823D632F2509C9 /* CertificatesManager.swift */; };
+		8DD39FA2C4A6EF1E7576AABD5E055CD7 /* Certificate.SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ECB65AD2D37B1F0A1B647D1831C74E /* Certificate.SHA1.swift */; };
 		9050F7ABADDC3FB68419BE43C7BF0E21 /* ResignTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA72330F61FFDADC36797F844EC04A /* ResignTools.swift */; };
 		A311B38272147FDBEC5075C1217DF646 /* KResignApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8E1ADB1D2BA7348B6ED532B1412E53 /* KResignApp.swift */; };
 		A921E9AC017710140451DA3899D65632 /* ProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74A9DA41FF0685D5835381672AC2161 /* ProvisioningProfile.swift */; };
 		BA16172032029FFE59BA848193FDA96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E09BD851B05289D0BE15C27B813B477 /* Assets.xcassets */; };
 		C254374B008A59F3B0764FA519489B28 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DB4961A58507A9083673C002F88FE3 /* LogView.swift */; };
+		C650C058CA5BAE72304923D1F3049268 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B8DCFBBF95FD39EA2CD36E2A32FD49 /* CustomPicker.swift */; };
 		CC33718C0E303919A68F135CB271C8C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDCCCFEAAD213636C70C30BB4595B773 /* Preview Assets.xcassets */; };
 		D46B078CC47E06723D9976C34C16E383 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF566196B752C50B6AC1772BEE0AAB /* Constant.swift */; };
 		DEF05747C72F9684E701FC360CB21046 /* ToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A85320FC7AC9E4753C23939BC47C4A3 /* ToolView.swift */; };
@@ -55,8 +57,9 @@
 		5E02E6E8D42CDE46D71D10CB3EDC5CEE /* KResign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KResign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A85320FC7AC9E4753C23939BC47C4A3 /* ToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolView.swift; sourceTree = "<group>"; };
 		6A9726589AC7167E92472B4BFA23D0B2 /* AppProvisioningProfilesGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProvisioningProfilesGroupView.swift; sourceTree = "<group>"; };
+		74ECB65AD2D37B1F0A1B647D1831C74E /* Certificate.SHA1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.SHA1.swift; sourceTree = "<group>"; };
 		758260349C00B80928D866D93D1365D0 /* Certificate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Certificate.swift; sourceTree = "<group>"; };
-		79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
+		77B8DCFBBF95FD39EA2CD36E2A32FD49 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		82A2BB95CEF680275BEF138449105446 /* ProvisioningProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfileManager.swift; sourceTree = "<group>"; };
 		9E8E1ADB1D2BA7348B6ED532B1412E53 /* KResignApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KResignApp.swift; sourceTree = "<group>"; };
 		A5D5A40A2BC1BEC3D55EB3BDAE951180 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		E73A6F214D61E9C2D37ED3012220600B /* CertificatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificatePicker.swift; sourceTree = "<group>"; };
 		E74A9DA41FF0685D5835381672AC2161 /* ProvisioningProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisioningProfile.swift; sourceTree = "<group>"; };
 		E8148668C9DB15AFA8AB2DD219751441 /* KResignError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KResignError.swift; sourceTree = "<group>"; };
+		EADA5103BA91D9C382C5746383BDE07D /* README.MD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		F9335E9FF0EC2FA8A329A5EB02DAF17B /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		FCE5D5C0271CBDFE39860D7FE0145038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDB15FB86AD2CD215D1FF4D747838E44 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -78,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6373AFA928E413AF009D192C /* MobileProvision in Frameworks */,
+				6337203128F855410038C416 /* MobileProvision in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 			children = (
 				0084D1205AF7F9C9190AB5A2CEDF6415 /* KResign */,
 				7752019ADDB3E90423174040D0A13D39 /* Products */,
+				EADA5103BA91D9C382C5746383BDE07D /* README.MD */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,8 +171,8 @@
 		80147849011D47BA6EB133D9A1F1052B /* Picker */ = {
 			isa = PBXGroup;
 			children = (
-				79CE3013923C31A54E906A8084DDEC21 /* CustomPicker.swift */,
 				E73A6F214D61E9C2D37ED3012220600B /* CertificatePicker.swift */,
+				77B8DCFBBF95FD39EA2CD36E2A32FD49 /* CustomPicker.swift */,
 				0767F6BEA140BA7E4EF9535C28C23764 /* IPAPicker.swift */,
 				02D9BCE33A107F245853D60E851DD965 /* ProvisioningProfilePicker.swift */,
 				C63FD58E65D47F679D626BB23595F4CA /* ResultSavePathPicker.swift */,
@@ -180,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				B6CA2F81FCB5D99380A81B6B8BC74E7D /* AppProvisioningProfileInfo.swift */,
+				74ECB65AD2D37B1F0A1B647D1831C74E /* Certificate.SHA1.swift */,
 				758260349C00B80928D866D93D1365D0 /* Certificate.swift */,
 				E74A9DA41FF0685D5835381672AC2161 /* ProvisioningProfile.swift */,
 			);
@@ -203,7 +209,7 @@
 			);
 			name = KResign;
 			packageProductDependencies = (
-				63ECDD0928DB762B00597FC7 /* MobileProvision */,
+				6337203028F855410038C416 /* MobileProvision */,
 			);
 			productName = KResign;
 			productReference = 5E02E6E8D42CDE46D71D10CB3EDC5CEE /* KResign.app */;
@@ -234,7 +240,7 @@
 			);
 			mainGroup = 32FD8391CBB8A20E5151DD88CC024B2B;
 			packageReferences = (
-				63ECDD0828DB762B00597FC7 /* XCRemoteSwiftPackageReference "MobileProvision" */,
+				6337202F28F855410038C416 /* XCRemoteSwiftPackageReference "MobileProvision" */,
 			);
 			productRefGroup = 7752019ADDB3E90423174040D0A13D39 /* Products */;
 			projectDirPath = "";
@@ -253,6 +259,7 @@
 				BA16172032029FFE59BA848193FDA96C /* Assets.xcassets in Resources */,
 				3081D54F19DAE7C107B2972AE11361F4 /* Localizable.strings in Resources */,
 				CC33718C0E303919A68F135CB271C8C6 /* Preview Assets.xcassets in Resources */,
+				5FE56111E73171E1BDF3CC2FFBD59E91 /* README.MD in Resources */,
 				ED77E2D1B612D4789CEC1EA80314A37F /* resign.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,12 +273,13 @@
 			files = (
 				23705820D18535B6321B66EAD20E70EF /* AppProvisioningProfileInfo.swift in Sources */,
 				63CD1FB87225CA84AC6DB514816CF522 /* AppProvisioningProfilesGroupView.swift in Sources */,
-				741278856203812C4D2207EE28C1509E /* CustomPicker.swift in Sources */,
+				8DD39FA2C4A6EF1E7576AABD5E055CD7 /* Certificate.SHA1.swift in Sources */,
 				492DDEDE5EF037F3F37033B64C2F76BC /* Certificate.swift in Sources */,
 				2CF162F9785F8FA7D943A7FA1C58A7E4 /* CertificatePicker.swift in Sources */,
 				8054F88643E305BF2BB44C7A7A1A8EF7 /* CertificatesManager.swift in Sources */,
 				D46B078CC47E06723D9976C34C16E383 /* Constant.swift in Sources */,
 				0810ACB88F8EF259C01C583671819AD8 /* ContentView.swift in Sources */,
+				C650C058CA5BAE72304923D1F3049268 /* CustomPicker.swift in Sources */,
 				529F2BABA17E7C65C71C2B0364E9DC33 /* FileHelper.swift in Sources */,
 				7A082DD44D47CE117934AAE03E86259C /* Formatter.swift in Sources */,
 				FC74B23330AF68F343CF91CF43363012 /* IPAPicker.swift in Sources */,
@@ -504,7 +512,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		63ECDD0828DB762B00597FC7 /* XCRemoteSwiftPackageReference "MobileProvision" */ = {
+		6337202F28F855410038C416 /* XCRemoteSwiftPackageReference "MobileProvision" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:CrazyFanFan/MobileProvision.git";
 			requirement = {
@@ -515,9 +523,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		63ECDD0928DB762B00597FC7 /* MobileProvision */ = {
+		6337203028F855410038C416 /* MobileProvision */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 63ECDD0828DB762B00597FC7 /* XCRemoteSwiftPackageReference "MobileProvision" */;
+			package = 6337202F28F855410038C416 /* XCRemoteSwiftPackageReference "MobileProvision" */;
 			productName = MobileProvision;
 		};
 /* End XCSwiftPackageProductDependency section */

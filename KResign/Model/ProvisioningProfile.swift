@@ -8,23 +8,24 @@
 import Foundation
 import MobileProvision
 
-private var displayCache = [String: String]()
+struct ProvisioningProfile: Hashable {
+    var raw: MobileProvision
+    var pickerDisplay: String
+    var certificates: [String]
 
-typealias ProvisioningProfile = MobileProvision
-extension ProvisioningProfile {
-    var pickerDisplay: String {
-        if let display = displayCache[uuid] { return display }
+    var path: URL { raw.path }
 
-        let display: String
+    public init?(with fileURL: URL) {
+        guard let raw = MobileProvision(with: fileURL) else { return nil }
 
-        if let id: String = applicationIdentifier {
-            display = "\(name) (\(id))"
+        self.raw = raw
+
+        if let id: String = raw.applicationIdentifier {
+            pickerDisplay = "\(raw.name) (\(id))"
         } else {
-            display = name
+            pickerDisplay = raw.name
         }
 
-        displayCache[uuid] = display
-
-        return display
+        certificates = raw.developerCertificates.map { $0.sha1 }
     }
 }

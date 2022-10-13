@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "mobileprovision",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:CrazyFanFan/MobileProvision.git",
+      "state" : {
+        "branch" : "release/1.0",
+        "revision" : "7e9637aaf32bf2aae87f4dd96b1b4bb84d64dd04"
+      }
+    }
+  ],
+  "version" : 2
+}
